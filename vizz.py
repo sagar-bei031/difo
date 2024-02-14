@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 
 import os
-
+import argparse
+import shutil
 
 class TreeNode:
     def __init__(self, name, is_file=False):
@@ -48,31 +49,41 @@ def print_tree(node, prefix='', is_last=True):
             print_tree(child, prefix + ('    ' if is_last else '│   '), is_last_child)
 
 
+def print_size(directory):
+    print("Size of directories and files in current directory:")
+    terminal_width = shutil.get_terminal_size().columns
+    max_name_length = max(len(item) for item in os.listdir(directory))
+    for item in os.listdir(directory):
+        full_path = os.path.join(directory, item)
+        size = os.path.getsize(full_path)
+        max_bar_length = terminal_width - max_name_length - len(f"{size} bytes") - 5  # Adjusted for spacing and units
+        bar_length = int(size / max_size * max_bar_length)
+        size_str = f"{size} bytes" if size < 1024 else f"{size / 1024:.2f} KB"
+        print(f"{item.ljust(max_name_length)} {'=' * bar_length} {size_str}")
+
+
+
 def main():
-    current_directory = os.getcwd()  # Use current directory by default
-    tree = build_tree(current_directory)
+    parser = argparse.ArgumentParser(description="Display directory tree and sizes.")
+    parser.add_argument("--tree", action="store_true", help="Display directory tree")
+    parser.add_argument("--size", action="store_true", help="Display size of directories and files in current directory")
+    args = parser.parse_args()
 
-    # Count directories and files
-    num_dirs, num_files = count_nodes(tree)
+    if args.tree:
+        current_directory = os.getcwd()  # Use current directory by default
+        tree = build_tree(current_directory)
+        print_tree(tree)
 
-    print_tree(tree)
-    print(f"{num_dirs} directories, {num_files} files")
-
-
-def count_nodes(node):
-    num_dirs = 0
-    num_files = 0
-
-    if node.is_file:
-        num_files += 1
-    else:
-        num_dirs += 1
-        for child in node.children:
-            child_dirs, child_files = count_nodes(child)
-            num_dirs += child_dirs
-            num_files += child_files
-
-    return num_dirs, num_files
+    if args.size:
+        current_directory = os.getcwd()  # Use current directory by default
+        global max_size
+        max_size = 0
+        for item in os.listdir(current_directory):
+            full_path = os.path.join(current_directory, item)
+            size = os.path.getsize(full_path)
+            if size > max_size:
+                max_size = size
+        print_size(current_directory)
 
 
 if __name__ == "__main__":
