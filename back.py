@@ -3,6 +3,7 @@
 import os
 import argparse
 import shutil
+from datetime import datetime
 
 # ANSI color escape codes
 COLOR_RED = "\033[91m"
@@ -47,84 +48,14 @@ class TreeNode:
     def is_leaf(self):
         return len(self.children) == 0
 
-
-class ListNode:
-    def __init__(self, data):
-        self.data = data
-        self.next = None
-
-def merge_sort_linked_list(head, key):
-    if not head or not head.next:
-        return head
-
-    mid = get_middle(head)
-    next_to_mid = mid.next
-    mid.next = None
-
-    left = merge_sort_linked_list(head, key)
-    right = merge_sort_linked_list(next_to_mid, key)
-
-    return merge(left, right, key)
-
-def get_middle(head):
-    if not head:
-        return head
-
-    slow = head
-    fast = head
-
-    while fast.next and fast.next.next:
-        slow = slow.next
-        fast = fast.next.next
-
-    return slow
-
-def merge(left, right, key):
-    result = None
-
-    if not left:
-        return right
-    if not right:
-        return left
-
-    if key(left.data) <= key(right.data):
-        result = left
-        result.next = merge(left.next, right, key)
-    else:
-        result = right
-        result.next = merge(left, right.next, key)
-
-    return result
-
-def convert_to_linked_list(node):
-    if not node:
-        return None
-
-    head = ListNode(node)
-    temp = head
-
-    for child in node.children:
-        temp.next = convert_to_linked_list(child)
-        temp = temp.next
-
-    return head
-
-def get_key(sort_type):
-    if sort_type == 'name':
-        return lambda x: x.name.lower()
-    elif sort_type == 'date':
-        return lambda x: os.path.getmtime(x.full_path)
-    elif sort_type == 'size':
-        return lambda x: os.path.getsize(x.full_path)
-
-def build_tree(directory, show_hidden=False, is_inner=False):
+def build_tree(directory, show_hidden=False):
     root = TreeNode(directory, os.path.basename(directory), is_file=False)
     if os.path.isdir(directory):
-        for item in os.listdir(directory):
+        for item in sorted(os.listdir(directory)):
             full_path = os.path.join(directory, item)
             if os.path.isdir(full_path):
                 if show_hidden or not item.startswith('.'):
-                    root.add_child(build_tree(full_path, show_hidden, True))
+                    root.add_child(build_tree(full_path, show_hidden))
             else:
                 root.add_child(TreeNode(full_path, item, is_file=True))
     return root
@@ -164,20 +95,12 @@ def print_tree(node, prefix='', is_last=True, show_hidden=False):
             is_last_child = i == child_count - 1
             print_tree(child, prefix + ('    ' if is_last else '│   '), is_last_child, show_hidden)
 
-def print_sorted_tree(tree_linked_list, show_hidden=False):
-    """Prints the sorted tree structure."""
-    current = tree_linked_list
-    while current:
-        color = get_file_color(current.data.full_path, os.path.basename(current.data.name).startswith('.') and not show_hidden)
-        print_colored_text(os.path.basename(current.data.name), color)
-        current = current.next
-
 def print_size(directory, show_hidden=False):
     """Prints the size of directories and files in the current directory."""
     print("Size of directories and files in current directory:")
     terminal_width = shutil.get_terminal_size().columns
     max_name_length = max(len(item) for item in os.listdir(directory))
-    for item in os.listdir(directory):
+    for item in sorted(os.listdir(directory)):
         full_path = os.path.join(directory, item)
         if show_hidden or not item.startswith('.'):
             size = os.path.getsize(full_path)
@@ -188,29 +111,41 @@ def print_size(directory, show_hidden=False):
             color_bar = COLOR_BAR
             print_colored_text(f"{item.ljust(max_name_length)} {COLOR_TEXT}{color_bar}{'=' * bar_length} {size_str}", color)
 
+def sort_files(directory, sort_type, order):
+    files = [f for f in os.listdir(directory) if not f.startswith('.')]
+    if sort_type == "name":
+        files.sort(reverse=(order == "desc"))
+    elif sort_type == "date":
+        files.sort(key=lambda x: os.path.getmtime(os.path.join(directory, x)), reverse=(order == "desc"))
+    elif sort_type == "size":
+        files.sort(key=lambda x: os.path.getsize(os.path.join(directory, x)), reverse=(order == "desc"))
+    return files
+
 def main():
     parser = argparse.ArgumentParser(description="Display directory tree and sizes.")
     parser.add_argument("--tree", action="store_true", help="Display directory tree")
     parser.add_argument("--size", action="store_true", help="Display size of directories and files in current directory")
+    parser.add_argument("--sort", nargs=2, metavar=("type", "order"), help="Sort files and folders")
     parser.add_argument("-a", "--all", action="store_true", help="Show hidden files and directories")
-    parser.add_argument("--sort", nargs=2, metavar=('sort_type', 'order'), help="Sort files and folders")
     args = parser.parse_args()
 
-    if args.tree:
-        current_directory = os.getcwd()  # Use current directory by default
-        tree = build_tree(current_directory, args.all)
-        
-        if args.sort:
-            sort_type, order = args.sort
-            key = get_key(sort_type)
-            tree_linked_list = convert_to_linked_list(tree)
-            tree_sorted = merge_sort_linked_list(tree_linked_list, key)
-            print_sorted_tree(tree_sorted, show_hidden=args.all)
-        else:
-            print_tree(tree, show_hidden=args.all)
+    current_directory = os.getcwd()
 
-    if args.size:
-        current_directory = os.getcwd()  # Use current directory by default
+    if args.sort:
+        sort_type, order = args.sort
+        if sort_type not in ["name", "date", "size"]:
+            print("Invalid sort type. Choose from 'name', 'date', or 'size'.")
+            return
+        if order not in ["asc", "desc"]:
+            print("Invalid sort order. Choose 'asc' or 'desc'.")
+            return
+        sorted_files = sort_files(current_directory, sort_type, order)
+        for file in sorted_files:
+            print(file)
+    elif args.tree:
+        tree = build_tree(current_directory, args.all)
+        print_tree(tree, show_hidden=args.all)
+    elif args.size:
         global max_size
         max_size = 0
         for item in os.listdir(current_directory):

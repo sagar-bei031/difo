@@ -16,15 +16,19 @@ class TreeNode:
 
 def build_tree(directory, show_hidden=False, is_inner=False):
     root = TreeNode(directory, os.path.basename(directory), is_file=False)
-    if os.path.isdir(directory):
-        for item in os.listdir(directory):
+    try:
+        for item in sorted(os.listdir(directory)):
             full_path = os.path.join(directory, item)
             if os.path.isdir(full_path):
                 if show_hidden or not item.startswith('.'):
                     root.add_child(build_tree(full_path, show_hidden, True))
             else:
                 root.add_child(TreeNode(full_path, item, is_file=True))
+    except PermissionError:
+        print(f"Permission denied for accessing {directory}")
+        exit()
     return root
+
 
 def print_tree(node, prefix='', is_last=True, show_hidden=False):
     """Prints the tree structure."""
@@ -37,7 +41,6 @@ def print_tree(node, prefix='', is_last=True, show_hidden=False):
             is_last_child = i == child_count - 1
             print_tree(child, prefix + ('    ' if is_last else '│   '), is_last_child, show_hidden)
 
-def draw_tree(args):
-        current_directory = os.getcwd()  # Use current directory by default
-        tree = build_tree(current_directory, args.all)
-        print_tree(tree, show_hidden=args.all)
+def draw_tree(args, path):
+    tree = build_tree(path, args.all)
+    print_tree(tree, show_hidden=args.all)
