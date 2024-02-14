@@ -4,6 +4,7 @@ from mycolors import *
 from mytree import *
 from mysize import *
 from myLinkedList import *
+from myQueue import *
 import argparse  
 
 def main():
@@ -13,6 +14,7 @@ def main():
     parser.add_argument("--size", action="store_true", help="Display size of directories and files in current directory")
     parser.add_argument("--sort", nargs=2, metavar=('type', 'order'), help="Sort by type in order (asc or desc)")
     parser.add_argument("-a", "--all", action="store_true", help="Show hidden files and directories")
+    parser.add_argument("--slide", type=float, default=1.0, help="Slide speed in seconds (default: 1.0)")
     args = parser.parse_args()
 
     if not os.path.exists(args.directory):
@@ -29,6 +31,12 @@ def main():
 
     elif args.sort:
         sort(args=args, path=path)
+
+    elif args.slide:
+        if not os.path.isfile(path):
+            print(f"difo: cannot open: '{args.directory}' is not a file")
+            exit()
+        print_content_with_slide(file_path=path, slide_speed=args.slide)
 
     else:
         print("difo v1.0\n \
