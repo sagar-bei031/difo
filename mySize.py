@@ -1,4 +1,4 @@
-from mycolors import *
+from myColors import *
 import shutil
 
 def print_size(directory, max_size, show_hidden=False):

@@ -1,4 +1,4 @@
-from mycolors import *
+from myColors import *
 
 class TreeNode:
     def __init__(self, full_path, name, is_file=False):

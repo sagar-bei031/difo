@@ -24,3 +24,5 @@ def print_content_with_slide(file_path, slide_speed):
     while not queue.is_empty():
         print(queue.dequeue(), end='', flush=True)
         time.sleep(slide_speed)
+        
+    print('\n')

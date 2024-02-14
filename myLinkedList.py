@@ -1,4 +1,4 @@
-from mycolors import *
+from myColors import *
 import os
 from datetime import datetime
 

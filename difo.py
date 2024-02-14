@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
-from mycolors import *
-from mytree import *
-from mysize import *
+from myColors import *
+from myTree import *
+from mySize import *
 from myLinkedList import *
 from myQueue import *
 import argparse  
