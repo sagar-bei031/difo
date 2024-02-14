@@ -16,21 +16,10 @@ def main():
     args = parser.parse_args()
 
     if args.tree:
-        current_directory = os.getcwd()  # Use current directory by default
-        tree = build_tree(current_directory, args.all)
-        print_tree(tree, show_hidden=args.all)
+        draw_tree(args=args)
 
     if args.size:
-        current_directory = os.getcwd()  # Use current directory by default
-        max_size = 0
-        for item in os.listdir(current_directory):
-            full_path = os.path.join(current_directory, item)
-            if args.all or not item.startswith('.'):
-                size = os.path.getsize(full_path)
-                if size > max_size:
-                    max_size = size
-        print_size(current_directory, show_hidden=args.all)
-
+        draw_size_bar(args=args)
 
 if __name__ == "__main__":
     main()

@@ -28,7 +28,7 @@ def build_tree(directory, show_hidden=False, is_inner=False):
 
 def print_tree(node, prefix='', is_last=True, show_hidden=False):
     """Prints the tree structure."""
-    color = get_file_color(node.full_path, node.name.startswith('.') and not show_hidden)
+    color = get_file_color(node.full_path, node.name.startswith('.'))
     print_colored_text(f"{prefix}{'└── ' if is_last else '├── '}{os.path.basename(node.name)}", color)
 
     if not node.is_leaf():
@@ -36,3 +36,8 @@ def print_tree(node, prefix='', is_last=True, show_hidden=False):
         for i, child in enumerate(node.children):
             is_last_child = i == child_count - 1
             print_tree(child, prefix + ('    ' if is_last else '│   '), is_last_child, show_hidden)
+
+def draw_tree(args):
+        current_directory = os.getcwd()  # Use current directory by default
+        tree = build_tree(current_directory, args.all)
+        print_tree(tree, show_hidden=args.all)

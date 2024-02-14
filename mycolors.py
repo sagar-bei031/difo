@@ -52,4 +52,7 @@ def get_file_color(filename, is_hidden):
         else:
             return COLOR_FILE
     else:
-        return COLOR_FAINT_WHITE  # Not a file or directory
+        if is_hidden:
+            return COLOR_FAINT_WHITE  # Hidden, not a file or directory
+        else:
+            return COLOR_FAINT_WHITE  # Not hidden, not a file or directory
