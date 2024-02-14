@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-
 from mycolors import *
 from mytree import *
 from mysize import *
@@ -8,7 +7,7 @@ from myLinkedList import *
 import argparse  
 
 def main():
-    parser = argparse.ArgumentParser(description="Display directory tree and sizes.")
+    parser = argparse.ArgumentParser(description="Directory Information: display tree view, directory sizes and do sorting.")
     parser.add_argument("directory", nargs="?", default=os.getcwd(), help="Directory path (default: current directory)")
     parser.add_argument("--tree", action="store_true", help="Display directory tree")
     parser.add_argument("--size", action="store_true", help="Display size of directories and files in current directory")
@@ -23,13 +22,21 @@ def main():
     path = os.path.abspath(args.directory)
 
     if args.tree:
-        draw_tree(args=args, path=path)
+        print_tree(args=args, path=path)
 
     elif args.size:
         draw_size_bar(args=args, path=path)
 
     elif args.sort:
         sort(args=args, path=path)
+
+    else:
+        print("difo v1.0\n \
+              Directory Information\n \
+              Project: Data Structure and Algorithm\n \
+              Second Year, Second Part\n \
+              \n \
+              For help, use 'difo --help'")
 
 if __name__ == "__main__":
     main()
