@@ -14,4 +14,3 @@ options:
   --sort type order  Sort by type in order (asc or desc)
   -a, --all          Show hidden files and directories
   --slide SLIDE      Slide speed in seconds (default: 1.0)
-sagar@sagar:~/4th_sem/Vz$ 
