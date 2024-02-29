@@ -1,32 +1,23 @@
-#pragma once
-
-#include <iostream>
-#include <filesystem>
-#include <algorithm>
+#include "myTree.hpp"
 #include "myColors.hpp"
+#include <iostream>
+#include <algorithm>
+#include <filesystem>
 
-struct TreeNode
+TreeNode::TreeNode(const std::string &fullPath, const std::string &nodeName, bool isFile)
+    : full_path(fullPath), name(nodeName), is_file(isFile) {}
+
+void TreeNode::addChild(TreeNode *child)
 {
-    std::string full_path;
-    std::string name;
-    bool is_file;
-    std::vector<TreeNode *> children;
+    children.push_back(child);
+}
 
-    TreeNode(const std::string &fullPath, const std::string &nodeName, bool isFile = false)
-        : full_path(fullPath), name(nodeName), is_file(isFile) {}
+bool TreeNode::isLeaf() const
+{
+    return children.empty();
+}
 
-    void addChild(TreeNode *child)
-    {
-        children.push_back(child);
-    }
-
-    bool isLeaf() const
-    {
-        return children.empty();
-    }
-};
-
-void build_tree(const std::string &directory, TreeNode *parent, bool show_hidden = false, const std::string &prefix = "")
+void build_tree(const std::string &directory, TreeNode *parent, bool show_hidden, const std::string &prefix)
 {
     try
     {

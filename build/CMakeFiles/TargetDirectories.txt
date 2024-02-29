@@ -1,0 +1,14 @@
+/home/sagar/4th_sem/Vz/build/CMakeFiles/run.dir
+/home/sagar/4th_sem/Vz/build/CMakeFiles/edit_cache.dir
+/home/sagar/4th_sem/Vz/build/CMakeFiles/rebuild_cache.dir
+/home/sagar/4th_sem/Vz/build/CMakeFiles/list_install_components.dir
+/home/sagar/4th_sem/Vz/build/CMakeFiles/install.dir
+/home/sagar/4th_sem/Vz/build/CMakeFiles/install/local.dir
+/home/sagar/4th_sem/Vz/build/CMakeFiles/install/strip.dir
+/home/sagar/4th_sem/Vz/build/src/CMakeFiles/difo.dir
+/home/sagar/4th_sem/Vz/build/src/CMakeFiles/edit_cache.dir
+/home/sagar/4th_sem/Vz/build/src/CMakeFiles/rebuild_cache.dir
+/home/sagar/4th_sem/Vz/build/src/CMakeFiles/list_install_components.dir
+/home/sagar/4th_sem/Vz/build/src/CMakeFiles/install.dir
+/home/sagar/4th_sem/Vz/build/src/CMakeFiles/install/local.dir
+/home/sagar/4th_sem/Vz/build/src/CMakeFiles/install/strip.dir

@@ -1,10 +1,12 @@
-#pragma once
-
+#include "mySize.hpp"
+#include "myColors.hpp"
 #include <iostream>
-#include <string>
+#include <iomanip>
+#include <unistd.h>
 #include <dirent.h>
 #include <sys/ioctl.h> // For terminal size
-#include "myColors.hpp"
+#include <sys/stat.h>
+
 
 void print_size(const std::string &directory, long long max_size, bool show_hidden)
 {

@@ -1,0 +1,1 @@
+/usr/bin/g++  -Wall -Wextra CMakeFiles/difo.dir/main.cpp.o CMakeFiles/difo.dir/myColors.cpp.o CMakeFiles/difo.dir/myTree.cpp.o CMakeFiles/difo.dir/myLinkedList.cpp.o CMakeFiles/difo.dir/myQueue.cpp.o CMakeFiles/difo.dir/mySize.cpp.o -o difo 

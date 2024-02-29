@@ -6,7 +6,7 @@
 #include "mySize.hpp"
 #include "myLinkedList.hpp"
 #include "myQueue.hpp"
-#include "myType.h"
+#include "myTypeDef.h"
 
 int main(int argc, char *argv[])
 {

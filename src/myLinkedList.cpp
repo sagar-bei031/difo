@@ -1,42 +1,28 @@
-#pragma once
-
+#include "myLinkedList.hpp"
 #include "myColors.hpp"
-#include "myType.h"
+#include "myTypeDef.h"
+#include <string>
+#include <algorithm>
+#include <dirent.h>
+#include <sys/stat.h>
 
-class ListNode
+void LinkedList::insert(const std::string &data)
 {
-public:
-    std::string data;
-    ListNode *next;
-
-    ListNode(const std::string &data) : data(data), next(nullptr) {}
-};
-
-class LinkedList
-{
-public:
-    ListNode *head;
-
-    LinkedList() : head(nullptr) {}
-
-    void insert(const std::string &data)
+    ListNode *new_node = new ListNode(data);
+    if (!head)
     {
-        ListNode *new_node = new ListNode(data);
-        if (!head)
-        {
-            head = new_node;
-        }
-        else
-        {
-            ListNode *current = head;
-            while (current->next)
-            {
-                current = current->next;
-            }
-            current->next = new_node;
-        }
+        head = new_node;
     }
-};
+    else
+    {
+        ListNode *current = head;
+        while (current->next)
+        {
+            current = current->next;
+        }
+        current->next = new_node;
+    }
+}
 
 LinkedList create_linked_list(const std::vector<std::string> &files, bool show_hidden)
 {
@@ -51,7 +37,7 @@ LinkedList create_linked_list(const std::vector<std::string> &files, bool show_h
     return linked_list;
 }
 
-ListNode *merge_sort_linked_list(ListNode *head, bool reverse = false);
+ListNode *merge_sort_linked_list(ListNode *head, bool reverse);
 
 ListNode *split_linked_list(ListNode *head)
 {
@@ -73,7 +59,7 @@ ListNode *split_linked_list(ListNode *head)
     return mid;
 }
 
-ListNode *merge(ListNode *left, ListNode *right, bool reverse = false)
+ListNode *merge(ListNode *left, ListNode *right, bool reverse)
 {
     if (!left)
     {
