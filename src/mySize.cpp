@@ -1,3 +1,12 @@
+/**
+ ******************************************************************************
+ * @file    mySize.cpp
+ * @brief   Implementation of functions for printing directory sizes and drawing size bars.
+ * @author  Arun, Sagar, Saurav
+ * @date    March 7, 2024
+ ******************************************************************************
+ */
+
 #include "mySize.hpp"
 #include "myColors.hpp"
 #include "myTypeDef.h"
@@ -5,10 +14,19 @@
 #include <iomanip>
 #include <unistd.h>
 #include <dirent.h>
-#include <sys/ioctl.h> // For terminal size
+#include <sys/ioctl.h>
 #include <sys/stat.h>
 
-
+/**
+ * @brief Print the size of a directory.
+ *
+ * This function prints the size of the specified directory along with a visual representation
+ * of the sizes of directories and files within it.
+ *
+ * @param directory The path to the directory.
+ * @param max_size The maximum size to consider.
+ * @param show_hidden Whether to include hidden files and directories in the size calculation.
+ */
 void print_size(const std::string &directory, long long max_size, bool show_hidden)
 {
     std::cout << COLOR_TEXT << "Size of directories and files in current directory:" << std::endl;
@@ -64,6 +82,14 @@ void print_size(const std::string &directory, long long max_size, bool show_hidd
     }
 }
 
+/**
+ * @brief Draw a size bar for a directory.
+ *
+ * This function draws a visual representation of the size of the specified directory.
+ *
+ * @param show_hidden Whether to include hidden files and directories in the size calculation.
+ * @param path The path to the directory.
+ */
 void draw_size_bar(bool show_hidden, const std::string &path)
 {
     long long max_size = 0;

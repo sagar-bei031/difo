@@ -1,22 +1,54 @@
+/**
+ ******************************************************************************
+ * @file    myTree.cpp
+ * @brief   Implementation of functions for building and printing directory trees.
+ *          Includes functions for building the tree structure, counting directories and files,
+ *          and printing the directory tree with optional inclusion of hidden files/directories.
+ * @author  Arun, Sagar, Saurav
+ * @date    March 7, 2024
+ ******************************************************************************
+ */
+
 #include "myTree.hpp"
 #include "myColors.hpp"
 #include <iostream>
 #include <algorithm>
 #include <filesystem>
 
+/**
+ * @brief Constructor for TreeNode class.
+ * @param fullPath The full path of the node.
+ * @param nodeName The name of the node.
+ * @param isFile Indicates whether the node is a file.
+ */
 TreeNode::TreeNode(const std::string &fullPath, const std::string &nodeName, bool isFile)
     : full_path(fullPath), name(nodeName), is_file(isFile) {}
 
+/**
+ * @brief Adds a child node to the current node.
+ * @param child Pointer to the child node to be added.
+ */
 void TreeNode::addChild(TreeNode *child)
 {
     children.push_back(child);
 }
 
+/**
+ * @brief Checks if the node is a leaf node (has no children).
+ * @return true if the node is a leaf node, false otherwise.
+ */
 bool TreeNode::isLeaf() const
 {
     return children.empty();
 }
 
+/**
+ * @brief Builds a tree representing the directory structure.
+ * @param directory The path to the directory to build the tree from.
+ * @param parent The parent node of the current directory.
+ * @param show_hidden Flag indicating whether to include hidden files/directories.
+ * @param prefix Prefix to prepend to each line in the tree (for formatting).
+ */
 void build_tree(const std::string &directory, TreeNode *parent, bool show_hidden, const std::string &prefix)
 {
     try
@@ -69,7 +101,11 @@ void build_tree(const std::string &directory, TreeNode *parent, bool show_hidden
     }
 }
 
-// Function to count directories recursively
+/**
+ * @brief Counts the number of directories recursively starting from a given node.
+ * @param node The starting node for counting directories.
+ * @return The number of directories.
+ */
 int count_directories(TreeNode *node)
 {
     int count = 0;
@@ -87,7 +123,11 @@ int count_directories(TreeNode *node)
     return count;
 }
 
-// Function to count files recursively
+/**
+ * @brief Counts the number of files recursively starting from a given node.
+ * @param node The starting node for counting files.
+ * @return The number of files.
+ */
 int count_files(TreeNode *node)
 {
     int count = 0;
@@ -108,9 +148,14 @@ int count_files(TreeNode *node)
     return count;
 }
 
+/**
+ * @brief Prints the directory tree rooted at the specified path.
+ * @param path The root path of the directory tree.
+ * @param show_hidden Flag indicating whether to include hidden files/directories.
+ */
 void print_tree(const std::string &path, bool show_hidden)
 {
-    TreeNode root(path, ".", false); // Assuming root directory is not hidden
+    TreeNode root(path, ".", false);
     print_colored_text(path, COLOR_FOLDER);
     std::cout << std::endl;
     build_tree(path, &root, show_hidden);

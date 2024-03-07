@@ -1,3 +1,12 @@
+/**
+ ******************************************************************************
+ * @file    myQueue.tpp
+ * @brief   Implementation of the Queue class template for managing a queue data structure.
+ * @author  Arun, Sagar, Saurav
+ * @date    March 7, 2024
+ ******************************************************************************
+ */
+
 #include "myQueue.hpp"
 #include <iostream>
 

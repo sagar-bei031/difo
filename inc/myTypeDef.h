@@ -1,30 +1,51 @@
+/**
+ ******************************************************************************
+ * @file    myTypeDef.h
+ * @brief   Defines enums for different view types, sort types, sort orders, and error types.
+ * @author  Arun, Sagar, Saurav
+ * @date    March 7, 2024
+ ******************************************************************************
+ */
+
 #pragma once
 
+/**
+ * @brief Enumerates different view types.
+ */
 enum ViewTypeDef
 {
-    TREE,
-    SIZE,
-    SORT,
-    SLIDE,
-    HELP,
+    TREE, /**< Tree view */
+    SIZE, /**< Size view */
+    SORT, /**< Sort view */
+    SLIDE, /**< Slide view */
+    HELP /**< Help view */
 };
 
+/**
+ * @brief Enumerates different sort types.
+ */
 enum SortTypeDef
 {
-    SORT_NAME,
-    SORT_SIZE,
-    SORT_TIME
+    SORT_NAME, /**< Sort by name */
+    SORT_SIZE, /**< Sort by size */
+    SORT_TIME /**< Sort by time */
 };
 
+/**
+ * @brief Enumerates different sort orders.
+ */
 enum SortOrderDef
 {
-    ASC,
-    DESC
+    ASC, /**< Ascending order */
+    DESC /**< Descending order */
 };
 
+/**
+ * @brief Enumerates different error types.
+ */
 enum ErrorTypeDef
 {
-    SUCCESS,
-    ARG_FAILURE,
-    OPEN_FAILURE
+    SUCCESS, /**< Success */
+    ARG_FAILURE, /**< Argument failure */
+    OPEN_FAILURE /**< Opening failure */
 };

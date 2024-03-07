@@ -1,13 +1,39 @@
+/**
+ ******************************************************************************
+ * @file    myColors.cpp
+ * @brief   Implementation of functions for handling colored text output and determining file colors.
+ * @author  Arun, Sagar, Saurav
+ * @date    March 7, 2024
+ ******************************************************************************
+ */
+
 #include "myColors.hpp"
 #include <iostream>
 #include <sys/stat.h>
 #include <unistd.h>
 
+/**
+ * @brief Print colored text to the console.
+ *
+ * This function prints the given text in the specified color.
+ *
+ * @param text The text to be printed.
+ * @param color The color to be used for printing.
+ */
 void print_colored_text(const std::string &text, const std::string &color) 
 {
     std::cout << color << text << COLOR_RESET;
 }
 
+/**
+ * @brief Get the color for a file based on its name and visibility.
+ *
+ * This function determines the appropriate color for a file based on its name and visibility.
+ *
+ * @param filename The name of the file.
+ * @param is_hidden A boolean indicating whether the file is hidden or not.
+ * @return The color code for the file.
+ */
 std::string get_file_color(const std::string &filename, bool is_hidden)
 {
     struct stat file_stat;
@@ -54,11 +80,11 @@ std::string get_file_color(const std::string &filename, bool is_hidden)
     {
         if (is_hidden)
         {
-            return COLOR_FAINT_WHITE; // Hidden, not a file or directory
+            return COLOR_FAINT_WHITE;
         }
         else
         {
-            return COLOR_FAINT_WHITE; // Not hidden, not a file or directory
+            return COLOR_FAINT_WHITE;
         }
     }
 }

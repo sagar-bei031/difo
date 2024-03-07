@@ -2,6 +2,8 @@
 
 DIFO (Directory Informaton) is a command-line utility written in C++, aimed at providing directory information, including displaying a tree view, directory sizes, and sorting options.  It serves as a tool for efficiently analyzing directory structures.
 
+[See Documentation](https://)
+
 ## Features
 1. **Display Directory Tree:** The tool offers the functionality to display a hierarchical tree view of directories and files within a specified directory.
 2. **Display Directory Sizes:** Users can view the sizes of directories and files contained
@@ -133,7 +135,6 @@ You can use regular command to remove it from `/usr/bin`.
 ```bash
 sudo rm -f /usr/bin/difo
 ```
-
 
 ## About Us
 We are students of Instittute of Engineering, Pulchowk Campus. At the time of its release, we were in fourth semester, Bachelor in Electronics, Communication and Information Engineering (BEI).
