@@ -1,12 +1,12 @@
+#include "myTypeDef.h"
+#include "myTree.hpp"
+#include "mySize.hpp"
+#include "mySort.hpp"
+#include "mySlide.hpp"
+#include "myColors.hpp"
 #include <iostream>
 #include <string>
 #include <filesystem>
-#include "myColors.hpp"
-#include "myTree.hpp"
-#include "mySize.hpp"
-#include "myLinkedList.hpp"
-#include "myQueue.hpp"
-#include "myTypeDef.h"
 
 std::string help_msg =
 "Directory Information: display tree view, directory sizes and do sorting.\n\n"
@@ -22,7 +22,7 @@ std::string help_msg =
 "  --slide, -l [speed]       Slide speed in seconds (default: 1.0 impled 1 character per 20ms)\n\n"
 "sorting options:\n"
 "  --sort-name, -n           Sort by name\n"
-"  --sort-date, -d           Sort by date\n"
+"  --sort-time, -d           Sort by time\n"
 "  --sort-size, -s           Sort by size\n"
 "  --ascending, -asc         Sort in ascending order\n"
 "  --descending, -desc       Sort in descending order\n\n"
@@ -69,10 +69,10 @@ int main(int argc, char *argv[])
             view = SORT;
             sort_type = SORT_NAME;
         }
-        else if (arg == "--sort-date" || arg == "-d")
+        else if (arg == "--sort-time" || arg == "-d")
         {
             view = SORT;
-            sort_type = SORT_DATE;
+            sort_type = SORT_TIME;
         }
         else if (arg == "--sort-size" || arg == "-s") // Change from -d to -s
         {

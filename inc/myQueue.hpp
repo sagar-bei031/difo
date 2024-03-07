@@ -1,7 +1,5 @@
 #pragma once
 
-#include <string>
-
 template <typename T, int MAX_SIZE = 128>
 class Queue
 {
@@ -24,4 +22,4 @@ public:
     void clear();
 };
 
-void print_content_with_slide(const std::string &file_path, float slide_speed);
+#include "myQueue.tpp"

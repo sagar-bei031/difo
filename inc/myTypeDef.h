@@ -13,7 +13,7 @@ enum SortTypeDef
 {
     SORT_NAME,
     SORT_SIZE,
-    SORT_DATE
+    SORT_TIME
 };
 
 enum SortOrderDef
