@@ -50,6 +50,7 @@ void build_tree(const std::string &directory, TreeNode *parent, bool show_hidden
                 // Print directory name with appropriate color
                 std::string color = get_file_color(full_path, item[0] == '.');
                 print_colored_text(item, color);
+                std::cout << std::endl;
                 // Recursively traverse directories
                 build_tree(full_path, node, show_hidden, prefix + (is_last ? "    " : "│   "));
             }
@@ -58,6 +59,7 @@ void build_tree(const std::string &directory, TreeNode *parent, bool show_hidden
                 // Print file name with appropriate color
                 std::string color = get_file_color(full_path, item[0] == '.');
                 print_colored_text(item, color);
+                std::cout << std::endl;
             }
         }
     }
@@ -110,6 +112,7 @@ void print_tree(const std::string &path, bool show_hidden)
 {
     TreeNode root(path, ".", false); // Assuming root directory is not hidden
     print_colored_text(path, COLOR_FOLDER);
+    std::cout << std::endl;
     build_tree(path, &root, show_hidden);
 
     // Optionally, you can print the count of directories and files

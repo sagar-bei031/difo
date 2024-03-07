@@ -5,7 +5,7 @@
 
 void print_colored_text(const std::string &text, const std::string &color) 
 {
-    std::cout << color << text << COLOR_RESET << std::endl;
+    std::cout << color << text << COLOR_RESET;
 }
 
 std::string get_file_color(const std::string &filename, bool is_hidden)

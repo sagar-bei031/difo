@@ -73,85 +73,85 @@ src/CMakeFiles/difo.dir/main.cpp.o: src/CMakeFiles/difo.dir/flags.make
 src/CMakeFiles/difo.dir/main.cpp.o: /home/sagar/4th_sem/Vz/src/main.cpp
 src/CMakeFiles/difo.dir/main.cpp.o: src/CMakeFiles/difo.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sagar/4th_sem/Vz/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/CMakeFiles/difo.dir/main.cpp.o"
-	cd /home/sagar/4th_sem/Vz/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/difo.dir/main.cpp.o -MF CMakeFiles/difo.dir/main.cpp.o.d -o CMakeFiles/difo.dir/main.cpp.o -c /home/sagar/4th_sem/Vz/src/main.cpp
+	cd /home/sagar/4th_sem/Vz/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/difo.dir/main.cpp.o -MF CMakeFiles/difo.dir/main.cpp.o.d -o CMakeFiles/difo.dir/main.cpp.o -c /home/sagar/4th_sem/Vz/src/main.cpp
 
 src/CMakeFiles/difo.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/difo.dir/main.cpp.i"
-	cd /home/sagar/4th_sem/Vz/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sagar/4th_sem/Vz/src/main.cpp > CMakeFiles/difo.dir/main.cpp.i
+	cd /home/sagar/4th_sem/Vz/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sagar/4th_sem/Vz/src/main.cpp > CMakeFiles/difo.dir/main.cpp.i
 
 src/CMakeFiles/difo.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/difo.dir/main.cpp.s"
-	cd /home/sagar/4th_sem/Vz/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sagar/4th_sem/Vz/src/main.cpp -o CMakeFiles/difo.dir/main.cpp.s
+	cd /home/sagar/4th_sem/Vz/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sagar/4th_sem/Vz/src/main.cpp -o CMakeFiles/difo.dir/main.cpp.s
 
 src/CMakeFiles/difo.dir/myColors.cpp.o: src/CMakeFiles/difo.dir/flags.make
 src/CMakeFiles/difo.dir/myColors.cpp.o: /home/sagar/4th_sem/Vz/src/myColors.cpp
 src/CMakeFiles/difo.dir/myColors.cpp.o: src/CMakeFiles/difo.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sagar/4th_sem/Vz/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/CMakeFiles/difo.dir/myColors.cpp.o"
-	cd /home/sagar/4th_sem/Vz/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/difo.dir/myColors.cpp.o -MF CMakeFiles/difo.dir/myColors.cpp.o.d -o CMakeFiles/difo.dir/myColors.cpp.o -c /home/sagar/4th_sem/Vz/src/myColors.cpp
+	cd /home/sagar/4th_sem/Vz/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/difo.dir/myColors.cpp.o -MF CMakeFiles/difo.dir/myColors.cpp.o.d -o CMakeFiles/difo.dir/myColors.cpp.o -c /home/sagar/4th_sem/Vz/src/myColors.cpp
 
 src/CMakeFiles/difo.dir/myColors.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/difo.dir/myColors.cpp.i"
-	cd /home/sagar/4th_sem/Vz/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sagar/4th_sem/Vz/src/myColors.cpp > CMakeFiles/difo.dir/myColors.cpp.i
+	cd /home/sagar/4th_sem/Vz/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sagar/4th_sem/Vz/src/myColors.cpp > CMakeFiles/difo.dir/myColors.cpp.i
 
 src/CMakeFiles/difo.dir/myColors.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/difo.dir/myColors.cpp.s"
-	cd /home/sagar/4th_sem/Vz/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sagar/4th_sem/Vz/src/myColors.cpp -o CMakeFiles/difo.dir/myColors.cpp.s
+	cd /home/sagar/4th_sem/Vz/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sagar/4th_sem/Vz/src/myColors.cpp -o CMakeFiles/difo.dir/myColors.cpp.s
 
 src/CMakeFiles/difo.dir/myTree.cpp.o: src/CMakeFiles/difo.dir/flags.make
 src/CMakeFiles/difo.dir/myTree.cpp.o: /home/sagar/4th_sem/Vz/src/myTree.cpp
 src/CMakeFiles/difo.dir/myTree.cpp.o: src/CMakeFiles/difo.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sagar/4th_sem/Vz/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/CMakeFiles/difo.dir/myTree.cpp.o"
-	cd /home/sagar/4th_sem/Vz/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/difo.dir/myTree.cpp.o -MF CMakeFiles/difo.dir/myTree.cpp.o.d -o CMakeFiles/difo.dir/myTree.cpp.o -c /home/sagar/4th_sem/Vz/src/myTree.cpp
+	cd /home/sagar/4th_sem/Vz/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/difo.dir/myTree.cpp.o -MF CMakeFiles/difo.dir/myTree.cpp.o.d -o CMakeFiles/difo.dir/myTree.cpp.o -c /home/sagar/4th_sem/Vz/src/myTree.cpp
 
 src/CMakeFiles/difo.dir/myTree.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/difo.dir/myTree.cpp.i"
-	cd /home/sagar/4th_sem/Vz/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sagar/4th_sem/Vz/src/myTree.cpp > CMakeFiles/difo.dir/myTree.cpp.i
+	cd /home/sagar/4th_sem/Vz/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sagar/4th_sem/Vz/src/myTree.cpp > CMakeFiles/difo.dir/myTree.cpp.i
 
 src/CMakeFiles/difo.dir/myTree.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/difo.dir/myTree.cpp.s"
-	cd /home/sagar/4th_sem/Vz/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sagar/4th_sem/Vz/src/myTree.cpp -o CMakeFiles/difo.dir/myTree.cpp.s
+	cd /home/sagar/4th_sem/Vz/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sagar/4th_sem/Vz/src/myTree.cpp -o CMakeFiles/difo.dir/myTree.cpp.s
 
 src/CMakeFiles/difo.dir/myLinkedList.cpp.o: src/CMakeFiles/difo.dir/flags.make
 src/CMakeFiles/difo.dir/myLinkedList.cpp.o: /home/sagar/4th_sem/Vz/src/myLinkedList.cpp
 src/CMakeFiles/difo.dir/myLinkedList.cpp.o: src/CMakeFiles/difo.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sagar/4th_sem/Vz/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object src/CMakeFiles/difo.dir/myLinkedList.cpp.o"
-	cd /home/sagar/4th_sem/Vz/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/difo.dir/myLinkedList.cpp.o -MF CMakeFiles/difo.dir/myLinkedList.cpp.o.d -o CMakeFiles/difo.dir/myLinkedList.cpp.o -c /home/sagar/4th_sem/Vz/src/myLinkedList.cpp
+	cd /home/sagar/4th_sem/Vz/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/difo.dir/myLinkedList.cpp.o -MF CMakeFiles/difo.dir/myLinkedList.cpp.o.d -o CMakeFiles/difo.dir/myLinkedList.cpp.o -c /home/sagar/4th_sem/Vz/src/myLinkedList.cpp
 
 src/CMakeFiles/difo.dir/myLinkedList.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/difo.dir/myLinkedList.cpp.i"
-	cd /home/sagar/4th_sem/Vz/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sagar/4th_sem/Vz/src/myLinkedList.cpp > CMakeFiles/difo.dir/myLinkedList.cpp.i
+	cd /home/sagar/4th_sem/Vz/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sagar/4th_sem/Vz/src/myLinkedList.cpp > CMakeFiles/difo.dir/myLinkedList.cpp.i
 
 src/CMakeFiles/difo.dir/myLinkedList.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/difo.dir/myLinkedList.cpp.s"
-	cd /home/sagar/4th_sem/Vz/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sagar/4th_sem/Vz/src/myLinkedList.cpp -o CMakeFiles/difo.dir/myLinkedList.cpp.s
+	cd /home/sagar/4th_sem/Vz/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sagar/4th_sem/Vz/src/myLinkedList.cpp -o CMakeFiles/difo.dir/myLinkedList.cpp.s
 
 src/CMakeFiles/difo.dir/myQueue.cpp.o: src/CMakeFiles/difo.dir/flags.make
 src/CMakeFiles/difo.dir/myQueue.cpp.o: /home/sagar/4th_sem/Vz/src/myQueue.cpp
 src/CMakeFiles/difo.dir/myQueue.cpp.o: src/CMakeFiles/difo.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sagar/4th_sem/Vz/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object src/CMakeFiles/difo.dir/myQueue.cpp.o"
-	cd /home/sagar/4th_sem/Vz/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/difo.dir/myQueue.cpp.o -MF CMakeFiles/difo.dir/myQueue.cpp.o.d -o CMakeFiles/difo.dir/myQueue.cpp.o -c /home/sagar/4th_sem/Vz/src/myQueue.cpp
+	cd /home/sagar/4th_sem/Vz/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/difo.dir/myQueue.cpp.o -MF CMakeFiles/difo.dir/myQueue.cpp.o.d -o CMakeFiles/difo.dir/myQueue.cpp.o -c /home/sagar/4th_sem/Vz/src/myQueue.cpp
 
 src/CMakeFiles/difo.dir/myQueue.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/difo.dir/myQueue.cpp.i"
-	cd /home/sagar/4th_sem/Vz/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sagar/4th_sem/Vz/src/myQueue.cpp > CMakeFiles/difo.dir/myQueue.cpp.i
+	cd /home/sagar/4th_sem/Vz/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sagar/4th_sem/Vz/src/myQueue.cpp > CMakeFiles/difo.dir/myQueue.cpp.i
 
 src/CMakeFiles/difo.dir/myQueue.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/difo.dir/myQueue.cpp.s"
-	cd /home/sagar/4th_sem/Vz/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sagar/4th_sem/Vz/src/myQueue.cpp -o CMakeFiles/difo.dir/myQueue.cpp.s
+	cd /home/sagar/4th_sem/Vz/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sagar/4th_sem/Vz/src/myQueue.cpp -o CMakeFiles/difo.dir/myQueue.cpp.s
 
 src/CMakeFiles/difo.dir/mySize.cpp.o: src/CMakeFiles/difo.dir/flags.make
 src/CMakeFiles/difo.dir/mySize.cpp.o: /home/sagar/4th_sem/Vz/src/mySize.cpp
 src/CMakeFiles/difo.dir/mySize.cpp.o: src/CMakeFiles/difo.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sagar/4th_sem/Vz/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object src/CMakeFiles/difo.dir/mySize.cpp.o"
-	cd /home/sagar/4th_sem/Vz/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/difo.dir/mySize.cpp.o -MF CMakeFiles/difo.dir/mySize.cpp.o.d -o CMakeFiles/difo.dir/mySize.cpp.o -c /home/sagar/4th_sem/Vz/src/mySize.cpp
+	cd /home/sagar/4th_sem/Vz/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/difo.dir/mySize.cpp.o -MF CMakeFiles/difo.dir/mySize.cpp.o.d -o CMakeFiles/difo.dir/mySize.cpp.o -c /home/sagar/4th_sem/Vz/src/mySize.cpp
 
 src/CMakeFiles/difo.dir/mySize.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/difo.dir/mySize.cpp.i"
-	cd /home/sagar/4th_sem/Vz/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sagar/4th_sem/Vz/src/mySize.cpp > CMakeFiles/difo.dir/mySize.cpp.i
+	cd /home/sagar/4th_sem/Vz/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sagar/4th_sem/Vz/src/mySize.cpp > CMakeFiles/difo.dir/mySize.cpp.i
 
 src/CMakeFiles/difo.dir/mySize.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/difo.dir/mySize.cpp.s"
-	cd /home/sagar/4th_sem/Vz/build/src && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sagar/4th_sem/Vz/src/mySize.cpp -o CMakeFiles/difo.dir/mySize.cpp.s
+	cd /home/sagar/4th_sem/Vz/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sagar/4th_sem/Vz/src/mySize.cpp -o CMakeFiles/difo.dir/mySize.cpp.s
 
 # Object files for target difo
 difo_OBJECTS = \
