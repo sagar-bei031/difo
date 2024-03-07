@@ -2,7 +2,7 @@
 
 DIFO (Directory Informaton) is a command-line utility written in C++, aimed at providing directory information, including displaying a tree view, directory sizes, and sorting options.  It serves as a tool for efficiently analyzing directory structures.
 
-[See Documentation](https://)
+[See Documentation](https://sagar-bei031.github.io/difo/)
 
 ## Features
 1. **Display Directory Tree:** The tool offers the functionality to display a hierarchical tree view of directories and files within a specified directory.
@@ -139,6 +139,8 @@ sudo rm -f /usr/bin/difo
 ## About Us
 We are students of Instittute of Engineering, Pulchowk Campus. At the time of its release, we were in fourth semester, Bachelor in Electronics, Communication and Information Engineering (BEI).
 
-<center>Arun Chaudhry | Sagar Chaudhery | Saurav Chaudhary</center>
-<center>Bachelor in Electronics, Communication and Information Engineering</center>
-<center>Institute of Engineering, Pulchowk Campus</center>
+<p align="center">
+Arun Chaudhry | Sagar Chaudhery | Saurav Chaudhary<br>
+Bachelor in Electronics, Communication and Information Engineering<br>
+Institute of Engineering, Pulchowk Campus
+</p>
