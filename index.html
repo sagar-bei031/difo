@@ -106,14 +106,36 @@ Integration</h1>
 <p>The tool returns specific exit codes to indicate the success or failure of operations, allowing for seamless integration into automated scripts and workflows.</p>
 <h1><a class="anchor" id="autotoc_md4"></a>
 Help</h1>
-<p>Directory Information: display tree view, directory sizes and do sorting.</p>
-<p>usage: difo.py [-h] [&ndash;tree] [&ndash;size] [&ndash;sort &lt;type&gt; &lt;order&gt;] [-a] [&ndash;slide &lt;speed&gt;] [directory]</p>
-<p>positional arguments: directory Directory path (default: current directory)</p>
-<p>options: &ndash;tree, -t Display directory tree &ndash;size, -z Display size of directories and files in current directory &ndash;sort [sorting options] Sort by type in order (-asc or -desc) &ndash;slide, -l [speed] Slide speed in seconds (default: 1.0 impled 1 character per 20ms) -a, &ndash;all Show hidden files and directories -h, &ndash;help Show this help message and exit</p>
-<p>sorting options: &ndash;sort-name, -n Sort by name &ndash;sort-time, -d Sort by time &ndash;sort-size, -s Sort by size &ndash;ascending, -asc Sort in ascending order &ndash;descending, -desc Sort in descending order</p>
-<p>slide speed: -f[speed] Adjust speed: 1.0 = one character per 20ms</p>
-<p>return: 0 success 1 invalid argument 2 failure on opening accessing (file or directory)</p>
-<h1><a class="anchor" id="autotoc_md5"></a>
+<div class="fragment"><div class="line">Directory Information: display tree view, directory sizes and do sorting.</div>
+<div class="line"> </div>
+<div class="line">usage: difo.py [-h] [--tree] [--size] [--sort &lt;type&gt; &lt;order&gt;] [-a] [--slide &lt;speed&gt;] [directory]</div>
+<div class="line"> </div>
+<div class="line">positional arguments:</div>
+<div class="line">  directory                 Directory path (default: current directory)</div>
+<div class="line"> </div>
+<div class="line">options:</div>
+<div class="line">  --tree, -t                Display directory tree</div>
+<div class="line">  --size, -z                Display size of directories and files in current directory</div>
+<div class="line">  --sort [sorting options]  Sort by type in order (-asc or -desc)</div>
+<div class="line">  --slide, -l [speed]       Slide speed in seconds (default: 1.0 impled 1 character per 20ms)</div>
+<div class="line">  -a, --all                 Show hidden files and directories</div>
+<div class="line">  -h, --help                Show this help message and exit</div>
+<div class="line"> </div>
+<div class="line">sorting options:</div>
+<div class="line">  --sort-name, -n           Sort by name</div>
+<div class="line">  --sort-time, -d           Sort by time</div>
+<div class="line">  --sort-size, -s           Sort by size</div>
+<div class="line">  --ascending, -asc         Sort in ascending order</div>
+<div class="line">  --descending, -desc       Sort in descending order</div>
+<div class="line"> </div>
+<div class="line">slide speed:</div>
+<div class="line">  -f[speed]                 Adjust speed: 1.0 = one character per 20ms</div>
+<div class="line"> </div>
+<div class="line">return:</div>
+<div class="line">  0                         success</div>
+<div class="line">  1                         invalid argument</div>
+<div class="line">  2                         failure on opening accessing (file or directory)</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md5"></a>
 Guideline</h1>
 <h2><a class="anchor" id="autotoc_md6"></a>
 Setup</h2>
@@ -122,7 +144,7 @@ Setup</h2>
 <div class="line">mkdir build # create build directory</div>
 <div class="line">cd build # get into build directory</div>
 <div class="line">cmake .. # setup cmake files</div>
-<div class="line">make # buils project</div>
+<div class="line">make # build project</div>
 <div class="line">sudo cp src/difo /usr/bin # copy projrct binary to user bin</div>
 <div class="line">sudo chmod +x /usr/bin/difo # make executable</div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md7"></a>
