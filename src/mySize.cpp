@@ -1,5 +1,6 @@
 #include "mySize.hpp"
 #include "myColors.hpp"
+#include "myTypeDef.h"
 #include <iostream>
 #include <iomanip>
 #include <unistd.h>
@@ -58,7 +59,8 @@ void print_size(const std::string &directory, long long max_size, bool show_hidd
     }
     else
     {
-        std::cerr << COLOR_RED << "Error opening directory: " << directory << std::endl;
+        std::cerr << "Error opening directory: " << directory << std::endl;
+        exit(OPEN_FAILURE);
     }
 }
 
@@ -87,6 +89,7 @@ void draw_size_bar(bool show_hidden, const std::string &path)
     }
     else
     {
-        std::cerr << COLOR_RED << "Error opening directory: " << path << std::endl;
+        std::cerr << "Error opening directory: " << path << std::endl;
+        exit(OPEN_FAILURE);
     }
 }

@@ -1,5 +1,6 @@
 #include "mySlide.hpp"
 #include "myQueue.hpp"
+#include "myTypeDef.h"
 #include <iostream>
 #include <fstream>
 #include <thread>
@@ -10,7 +11,7 @@ void print_content_with_slide(const std::string &file_path, float slide_speed)
     if (!file.is_open())
     {
         std::cerr << "Error opening file: " << file_path << std::endl;
-        return;
+        exit(OPEN_FAILURE);
     }
 
     char character;

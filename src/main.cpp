@@ -14,12 +14,12 @@ std::string help_msg =
 "positional arguments:\n"
 "  directory                 Directory path (default: current directory)\n\n"
 "options:\n"
-"  -h, --help                Show this help message and exit\n"
-"  --tree                    Display directory tree\n"
-"  --size                    Display size of directories and files in current directory\n"
+"  --tree, -t                Display directory tree\n"
+"  --size, -z                Display size of directories and files in current directory\n"
 "  --sort [sorting options]  Sort by type in order (-asc or -desc)\n"
+"  --slide, -l [speed]       Slide speed in seconds (default: 1.0 impled 1 character per 20ms)\n"
 "  -a, --all                 Show hidden files and directories\n"
-"  --slide, -l [speed]       Slide speed in seconds (default: 1.0 impled 1 character per 20ms)\n\n"
+"  -h, --help                Show this help message and exit\n\n"
 "sorting options:\n"
 "  --sort-name, -n           Sort by name\n"
 "  --sort-time, -d           Sort by time\n"
@@ -31,9 +31,7 @@ std::string help_msg =
 "return:\n"
 "  0                         success\n"
 "  1                         invalid argument\n"
-"  2                         failure on accessing (file or directory)\n"
-"  3                         failure on opening file\n"
-"  4                         memory failure (segmentation fault)\n\n";
+"  2                         failure on opening (file or directory)\n\n";
 
 
 
@@ -106,6 +104,7 @@ int main(int argc, char *argv[])
         else
         {
             std::cerr << "difo: invalid argument '" << arg << "'" << std::endl;
+            std::cout << "see 'difo --help'" << std::endl;
             return ARG_FAILURE;
         }
     }
@@ -113,14 +112,13 @@ int main(int argc, char *argv[])
     if (!std::filesystem::exists(directory))
     {
         std::cerr << "difo: cannot access '" << directory << "': No such file or directory" << std::endl;
-        return ACCESS_FAILURE;
+        return OPEN_FAILURE;
     }
 
     std::string path = std::filesystem::absolute(directory).string();
 
     switch (view)
     {
-
     case TREE:
         print_tree(path, show_hidden);
         break;
@@ -137,7 +135,7 @@ int main(int argc, char *argv[])
         if (!std::filesystem::is_regular_file(path))
         {
             std::cerr << "difo: cannot open: '" << directory << "' is not a file" << std::endl;
-            return FILE_OPEN_FAILURE;
+            return OPEN_FAILURE;
         }
         print_content_with_slide(path, slide_speed);
         break;
@@ -145,14 +143,7 @@ int main(int argc, char *argv[])
     case HELP:
         std::cout << help_msg << std::flush;
         break;
-
-    default:
-        std::cout << "difo v1.0\n"
-                     "Directory Information\n"
-                     "Project: Data Structure and Algorithm\n"
-                     "Second Year, Second Part\n\n"
-                     "For help, use 'difo --help'"
-                  << std::endl;
     }
+
     return SUCCESS;
 }

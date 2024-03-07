@@ -22,12 +22,9 @@ enum SortOrderDef
     DESC
 };
 
-
 enum ErrorTypeDef
 {
     SUCCESS,
     ARG_FAILURE,
-    ACCESS_FAILURE,
-    FILE_OPEN_FAILURE,
-    MEMORY_FAILURE
+    OPEN_FAILURE
 };
