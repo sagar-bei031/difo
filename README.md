@@ -19,6 +19,7 @@ The purpose of difo is to aid users in efficiently navigating, analyzing, and ma
 The tool returns specific exit codes to indicate the success or failure of operations, allowing for seamless integration into automated scripts and workflows.
 
 ## Help
+```plaintext
 Directory Information: display tree view, directory sizes and do sorting.
 
 usage: difo.py [-h] [--tree] [--size] [--sort <type> <order>] [-a] [--slide <speed>] [directory]
@@ -48,6 +49,7 @@ return:
   0                         success
   1                         invalid argument
   2                         failure on opening accessing (file or directory)
+```
 
 
 ## Guideline
@@ -58,9 +60,9 @@ return:
  mkdir build # create build directory
  cd build # get into build directory
  cmake .. # setup cmake files
- make # buils project
- sudo cp src/difo /usr/bin # copy projrct binary to user bin
- sudo chmod +x /usr/bin/difo # make executable
+ make # build project
+ sudo cp src/difo /usr/local/bin # copy projrct binary to user bin
+ sudo chmod +x /usr/local/bin/difo # make executable
  ```
 
 ### Tree View
@@ -133,14 +135,14 @@ difo -h # use short-hand
 ### Remove
 You can use regular command to remove it from `/usr/bin`.
 ```bash
-sudo rm -f /usr/bin/difo
+sudo rm -f /usr/local/bin/difo
 ```
 
 ## About Us
 We are students of Instittute of Engineering, Pulchowk Campus. At the time of its release, we were in fourth semester, Bachelor in Electronics, Communication and Information Engineering (BEI).
 
 <p align="center">
-Arun Chaudhry | Sagar Chaudhery | Saurav Chaudhary<br>
+Arun Chaudhary | Sagar Chaudhary | Saurav Chaudhary<br>
 Bachelor in Electronics, Communication and Information Engineering<br>
 Institute of Engineering, Pulchowk Campus
 </p>
