@@ -112,6 +112,10 @@ int main(int argc, char *argv[])
         {
             slide_speed = std::stof(arg.substr(2));
         }
+        else if (arg == "--all" || arg == "-a")
+        {
+            show_hidden = true;
+        }
         else if (arg == "--help" || arg == "-h")
         {
             view = HELP;

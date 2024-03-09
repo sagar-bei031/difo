@@ -14,6 +14,7 @@
 #include "myColors.hpp"
 #include "myTypeDef.h"
 #include <vector>
+#include <functional>
 
 /**
  * @brief Case-insensitive comparison of two strings.
@@ -25,6 +26,41 @@
  * @return true if strings are equal (case-insensitive), false otherwise.
  */
 bool caseInsensitiveCompare(const std::string &a, const std::string &b);
+
+/**
+ * @brief Format size in human-readable format.
+ *
+ * This function formats the size in a human-readable format, converting bytes to KB, MB, or GB as needed.
+ *
+ * @param size The size in bytes.
+ * @return The formatted size string.
+ */
+std::string format_size(double size);
+
+/**
+ * @brief Merge two sorted subarrays into one sorted array.
+ *
+ * This function merges two sorted subarrays into one sorted array.
+ *
+ * @param arr The array to be merged.
+ * @param l The left index of the subarray.
+ * @param m The middle index of the subarray.
+ * @param r The right index of the subarray.
+ * @param comparator The function used for comparison.
+ */
+void merge(std::vector<std::string> &arr, int l, int m, int r, std::function<bool(const std::string &, const std::string &)> comparator);
+
+/**
+ * @brief Implementation of merge sort algorithm.
+ *
+ * This function recursively sorts the array using the merge sort algorithm.
+ *
+ * @param arr The array to be sorted.
+ * @param l The left index of the array.
+ * @param r The right index of the array.
+ * @param comparator The function used for comparison.
+ */
+void mergeSort(std::vector<std::string> &arr, int l, int r, std::function<bool(const std::string &, const std::string &)> comparator);
 
 /**
  * @brief Sort files in a directory based on specified criteria.

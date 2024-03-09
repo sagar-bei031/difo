@@ -59,6 +59,84 @@ std::string format_size(double size)
 }
 
 /**
+ * @brief Merge two sorted subarrays into one sorted array.
+ *
+ * This function merges two sorted subarrays into one sorted array.
+ *
+ * @param arr The array to be merged.
+ * @param l The left index of the subarray.
+ * @param m The middle index of the subarray.
+ * @param r The right index of the subarray.
+ * @param comparator The function used for comparison.
+ */
+void merge(std::vector<std::string> &arr, int l, int m, int r, std::function<bool(const std::string &, const std::string &)> comparator)
+{
+    int n1 = m - l + 1;
+    int n2 = r - m;
+
+    std::vector<std::string> L(n1), R(n2);
+
+    for (int i = 0; i < n1; i++)
+        L[i] = arr[l + i];
+    for (int j = 0; j < n2; j++)
+        R[j] = arr[m + 1 + j];
+
+    int i = 0;
+    int j = 0;
+    int k = l;
+
+    while (i < n1 && j < n2)
+    {
+        if (comparator(L[i], R[j]))
+        {
+            arr[k] = L[i];
+            i++;
+        }
+        else
+        {
+            arr[k] = R[j];
+            j++;
+        }
+        k++;
+    }
+
+    while (i < n1)
+    {
+        arr[k] = L[i];
+        i++;
+        k++;
+    }
+
+    while (j < n2)
+    {
+        arr[k] = R[j];
+        j++;
+        k++;
+    }
+}
+
+/**
+ * @brief Implementation of merge sort algorithm.
+ *
+ * This function recursively sorts the array using the merge sort algorithm.
+ *
+ * @param arr The array to be sorted.
+ * @param l The left index of the array.
+ * @param r The right index of the array.
+ * @param comparator The function used for comparison.
+ */
+void mergeSort(std::vector<std::string> &arr, int l, int r, std::function<bool(const std::string &, const std::string &)> comparator)
+{
+    if (l < r)
+    {
+        int m = l + (r - l) / 2;
+        mergeSort(arr, l, m, comparator);
+        mergeSort(arr, m + 1, r, comparator);
+        merge(arr, l, m, r, comparator);
+    }
+}
+
+/**
  * @brief Sort files in a directory based on specified criteria.
  *
  * This function sorts the files in the specified directory based on the provided sort type
@@ -109,7 +187,7 @@ std::vector<std::string> sort_files(const std::string &directory, const SortType
         }
     };
 
-    std::sort(files.begin(), files.end(), comparator);
+    mergeSort(files, 0, files.size() - 1, comparator); // Use custom merge sort here
 
     if (sort_order == DESC)
         std::reverse(files.begin(), files.end()); // Reverse the sorted order if DESC
