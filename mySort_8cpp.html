@@ -103,6 +103,7 @@ $(document).ready(function(){initNavTree('mySort_8cpp.html',''); initResizable()
 <code>#include &lt;iomanip&gt;</code><br />
 <code>#include &lt;unistd.h&gt;</code><br />
 <code>#include &lt;sys/ioctl.h&gt;</code><br />
+<code>#include &lt;functional&gt;</code><br />
 </div>
 <p><a href="mySort_8cpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -114,6 +115,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a80c07f500a039203dbaf762b97870a46"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mySort_8cpp.html#a80c07f500a039203dbaf762b97870a46">format_size</a> (double size)</td></tr>
 <tr class="memdesc:a80c07f500a039203dbaf762b97870a46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Format size in human-readable format.  <a href="mySort_8cpp.html#a80c07f500a039203dbaf762b97870a46">More...</a><br /></td></tr>
 <tr class="separator:a80c07f500a039203dbaf762b97870a46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84d2b0b0e788cc0c9d6d5ae08b6d60d4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mySort_8cpp.html#a84d2b0b0e788cc0c9d6d5ae08b6d60d4">merge</a> (std::vector&lt; std::string &gt; &amp;arr, int l, int m, int r, std::function&lt; bool(const std::string &amp;, const std::string &amp;)&gt; comparator)</td></tr>
+<tr class="memdesc:a84d2b0b0e788cc0c9d6d5ae08b6d60d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Merge two sorted subarrays into one sorted array.  <a href="mySort_8cpp.html#a84d2b0b0e788cc0c9d6d5ae08b6d60d4">More...</a><br /></td></tr>
+<tr class="separator:a84d2b0b0e788cc0c9d6d5ae08b6d60d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cd113de4f66c4938b81b99b8e03baf4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mySort_8cpp.html#a3cd113de4f66c4938b81b99b8e03baf4">mergeSort</a> (std::vector&lt; std::string &gt; &amp;arr, int l, int r, std::function&lt; bool(const std::string &amp;, const std::string &amp;)&gt; comparator)</td></tr>
+<tr class="memdesc:a3cd113de4f66c4938b81b99b8e03baf4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implementation of merge sort algorithm.  <a href="mySort_8cpp.html#a3cd113de4f66c4938b81b99b8e03baf4">More...</a><br /></td></tr>
+<tr class="separator:a3cd113de4f66c4938b81b99b8e03baf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad21bb800646dcef6ccb8affa1ad6316a"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mySort_8cpp.html#ad21bb800646dcef6ccb8affa1ad6316a">sort_files</a> (const std::string &amp;directory, const <a class="el" href="myTypeDef_8h.html#a05557ef2d32f2934d4e1d478720c1b73">SortTypeDef</a> &amp;sort_type, const <a class="el" href="myTypeDef_8h.html#a73fcfd4206edc117e9ca1703a7ab9933">SortOrderDef</a> &amp;sort_order)</td></tr>
 <tr class="memdesc:ad21bb800646dcef6ccb8affa1ad6316a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sort files in a directory based on specified criteria.  <a href="mySort_8cpp.html#ad21bb800646dcef6ccb8affa1ad6316a">More...</a><br /></td></tr>
 <tr class="separator:ad21bb800646dcef6ccb8affa1ad6316a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -165,7 +172,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if strings are equal (case-insensitive), false otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="mySort_8cpp_source.html#l00033">33</a> of file <a class="el" href="mySort_8cpp_source.html">mySort.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mySort_8cpp_source.html#l00034">34</a> of file <a class="el" href="mySort_8cpp_source.html">mySort.cpp</a>.</p>
 
 </div>
 </div>
@@ -195,7 +202,122 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The formatted size string. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="mySort_8cpp_source.html#l00047">47</a> of file <a class="el" href="mySort_8cpp_source.html">mySort.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mySort_8cpp_source.html#l00048">48</a> of file <a class="el" href="mySort_8cpp_source.html">mySort.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a84d2b0b0e788cc0c9d6d5ae08b6d60d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84d2b0b0e788cc0c9d6d5ae08b6d60d4">&#9670;&nbsp;</a></span>merge()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void merge </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; std::string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>arr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>l</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>r</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::function&lt; bool(const std::string &amp;, const std::string &amp;)&gt;&#160;</td>
+          <td class="paramname"><em>comparator</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Merge two sorted subarrays into one sorted array. </p>
+<p>This function merges two sorted subarrays into one sorted array.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">arr</td><td>The array to be merged. </td></tr>
+    <tr><td class="paramname">l</td><td>The left index of the subarray. </td></tr>
+    <tr><td class="paramname">m</td><td>The middle index of the subarray. </td></tr>
+    <tr><td class="paramname">r</td><td>The right index of the subarray. </td></tr>
+    <tr><td class="paramname">comparator</td><td>The function used for comparison. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="mySort_8cpp_source.html#l00073">73</a> of file <a class="el" href="mySort_8cpp_source.html">mySort.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a3cd113de4f66c4938b81b99b8e03baf4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3cd113de4f66c4938b81b99b8e03baf4">&#9670;&nbsp;</a></span>mergeSort()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mergeSort </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; std::string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>arr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>l</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>r</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::function&lt; bool(const std::string &amp;, const std::string &amp;)&gt;&#160;</td>
+          <td class="paramname"><em>comparator</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implementation of merge sort algorithm. </p>
+<p>This function recursively sorts the array using the merge sort algorithm.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">arr</td><td>The array to be sorted. </td></tr>
+    <tr><td class="paramname">l</td><td>The left index of the array. </td></tr>
+    <tr><td class="paramname">r</td><td>The right index of the array. </td></tr>
+    <tr><td class="paramname">comparator</td><td>The function used for comparison. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="mySort_8cpp_source.html#l00129">129</a> of file <a class="el" href="mySort_8cpp_source.html">mySort.cpp</a>.</p>
 
 </div>
 </div>
@@ -249,7 +371,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="mySort_8cpp_source.html#l00132">132</a> of file <a class="el" href="mySort_8cpp_source.html">mySort.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mySort_8cpp_source.html#l00211">211</a> of file <a class="el" href="mySort_8cpp_source.html">mySort.cpp</a>.</p>
 
 </div>
 </div>
@@ -297,7 +419,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A vector of sorted file names. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="mySort_8cpp_source.html#l00072">72</a> of file <a class="el" href="mySort_8cpp_source.html">mySort.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mySort_8cpp_source.html#l00151">151</a> of file <a class="el" href="mySort_8cpp_source.html">mySort.cpp</a>.</p>
 
 </div>
 </div>
