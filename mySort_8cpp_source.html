@@ -99,210 +99,209 @@ $(document).ready(function(){initNavTree('mySort_8cpp_source.html',''); initResi
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;iomanip&gt;</span></div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;unistd.h&gt;</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &lt;sys/ioctl.h&gt;</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &lt;functional&gt;</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="mySort_8cpp.html#a02b00fcfc4646b515c5d54f576a06b7d">   34</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="mySort_8cpp.html#a02b00fcfc4646b515c5d54f576a06b7d">caseInsensitiveCompare</a>(<span class="keyword">const</span> std::string &amp;a, <span class="keyword">const</span> std::string &amp;b)</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;{</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordflow">return</span> std::lexicographical_compare(a.begin(), a.end(), b.begin(), b.end(), [](<span class="keywordtype">char</span> c1, <span class="keywordtype">char</span> c2)</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                                        { return std::tolower(c1) &lt; std::tolower(c2); });</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;}</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="mySort_8cpp.html#a80c07f500a039203dbaf762b97870a46">   48</a></span>&#160;std::string <a class="code" href="mySort_8cpp.html#a80c07f500a039203dbaf762b97870a46">format_size</a>(<span class="keywordtype">double</span> size)</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;{</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">char</span> *suffixes[] = {<span class="stringliteral">&quot;bytes&quot;</span>, <span class="stringliteral">&quot;KB&quot;</span>, <span class="stringliteral">&quot;MB&quot;</span>, <span class="stringliteral">&quot;GB&quot;</span>};</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">int</span> suffix_index = 0;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordflow">while</span> (size &gt;= 1024 &amp;&amp; suffix_index &lt; 3)</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    {</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        size /= 1024;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        suffix_index++;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    }</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    std::stringstream ss;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    ss &lt;&lt; std::fixed &lt;&lt; std::setprecision(2) &lt;&lt; size &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; suffixes[suffix_index];</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordflow">return</span> ss.str();</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;}</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="mySort_8cpp.html#a84d2b0b0e788cc0c9d6d5ae08b6d60d4">   73</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="mySort_8cpp.html#a84d2b0b0e788cc0c9d6d5ae08b6d60d4">merge</a>(std::vector&lt;std::string&gt; &amp;arr, <span class="keywordtype">int</span> l, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> r, std::function&lt;<span class="keywordtype">bool</span>(<span class="keyword">const</span> std::string &amp;, <span class="keyword">const</span> std::string &amp;)&gt; comparator)</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;{</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordtype">int</span> n1 = m - l + 1;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">int</span> n2 = r - m;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    std::vector&lt;std::string&gt; L(n1), R(n2);</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; n1; i++)</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        L[i] = arr[l + i];</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; n2; j++)</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        R[j] = arr[m + 1 + j];</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keywordtype">int</span> i = 0;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordtype">int</span> j = 0;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keywordtype">int</span> k = l;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keywordflow">while</span> (i &lt; n1 &amp;&amp; j &lt; n2)</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    {</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="keywordflow">if</span> (comparator(L[i], R[j]))</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        {</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            arr[k] = L[i];</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            i++;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        }</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        {</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            arr[k] = R[j];</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;            j++;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        }</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        k++;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    }</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordflow">while</span> (i &lt; n1)</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    {</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        arr[k] = L[i];</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        i++;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        k++;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    }</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keywordflow">while</span> (j &lt; n2)</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    {</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        arr[k] = R[j];</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        j++;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        k++;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    }</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;}</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
-<div class="line"><a name="l00129"></a><span class="lineno"><a class="line" href="mySort_8cpp.html#a3cd113de4f66c4938b81b99b8e03baf4">  129</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="mySort_8cpp.html#a3cd113de4f66c4938b81b99b8e03baf4">mergeSort</a>(std::vector&lt;std::string&gt; &amp;arr, <span class="keywordtype">int</span> l, <span class="keywordtype">int</span> r, std::function&lt;<span class="keywordtype">bool</span>(<span class="keyword">const</span> std::string &amp;, <span class="keyword">const</span> std::string &amp;)&gt; comparator)</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;{</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="keywordflow">if</span> (l &lt; r)</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    {</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        <span class="keywordtype">int</span> m = l + (r - l) / 2;</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        <a class="code" href="mySort_8cpp.html#a3cd113de4f66c4938b81b99b8e03baf4">mergeSort</a>(arr, l, m, comparator);</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        <a class="code" href="mySort_8cpp.html#a3cd113de4f66c4938b81b99b8e03baf4">mergeSort</a>(arr, m + 1, r, comparator);</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        <a class="code" href="mySort_8cpp.html#a84d2b0b0e788cc0c9d6d5ae08b6d60d4">merge</a>(arr, l, m, r, comparator);</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    }</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;}</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160; </div>
-<div class="line"><a name="l00151"></a><span class="lineno"><a class="line" href="mySort_8cpp.html#ad21bb800646dcef6ccb8affa1ad6316a">  151</a></span>&#160;std::vector&lt;std::string&gt; <a class="code" href="mySort_8cpp.html#ad21bb800646dcef6ccb8affa1ad6316a">sort_files</a>(<span class="keyword">const</span> std::string &amp;directory, <span class="keyword">const</span> <a class="code" href="myTypeDef_8h.html#a05557ef2d32f2934d4e1d478720c1b73">SortTypeDef</a> &amp;sort_type, <span class="keyword">const</span> <a class="code" href="myTypeDef_8h.html#a73fcfd4206edc117e9ca1703a7ab9933">SortOrderDef</a> &amp;sort_order)</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;{</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    std::vector&lt;std::string&gt; files;</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160; </div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    DIR *dir;</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    <span class="keyword">struct </span>dirent *entry;</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    <span class="keywordflow">if</span> ((dir = opendir(directory.c_str())) != NULL)</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    {</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        <span class="keywordflow">while</span> ((entry = readdir(dir)) != NULL)</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        {</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;            std::string filename = entry-&gt;d_name;</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;            <span class="keywordflow">if</span> (filename == <span class="stringliteral">&quot;.&quot;</span> || filename == <span class="stringliteral">&quot;..&quot;</span>)</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;                <span class="keywordflow">continue</span>; <span class="comment">// Skip current and parent directory entries</span></div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;            files.push_back(filename);</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        }</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        closedir(dir);</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    }</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160; </div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    <span class="keyword">auto</span> comparator = [&amp;](<span class="keyword">const</span> std::string &amp;a, <span class="keyword">const</span> std::string &amp;b)</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    {</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        std::string path_a = directory + <span class="stringliteral">&quot;/&quot;</span> + a;</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;        std::string path_b = directory + <span class="stringliteral">&quot;/&quot;</span> + b;</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        <span class="keyword">struct </span>stat stat_a, stat_b;</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;        stat(path_a.c_str(), &amp;stat_a);</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;        stat(path_b.c_str(), &amp;stat_b);</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160; </div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        <span class="keywordflow">if</span> (sort_type == <a class="code" href="myTypeDef_8h.html#a05557ef2d32f2934d4e1d478720c1b73a5c10e7e41e83914019064ea8c3ed2b87">SORT_TIME</a>)</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        {</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;            <span class="keywordflow">return</span> sort_order == <a class="code" href="myTypeDef_8h.html#a73fcfd4206edc117e9ca1703a7ab9933a6ec9ae46a1e5c631ae04fc9c4c2d63bc">ASC</a> ? stat_a.st_mtime &lt; stat_b.st_mtime : stat_a.st_mtime &gt; stat_b.st_mtime;</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;        }</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (sort_type == <a class="code" href="myTypeDef_8h.html#a05557ef2d32f2934d4e1d478720c1b73a7e4d4306df8559e048127ce7dce0d2c3">SORT_SIZE</a>)</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;        {</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;            <span class="keywordflow">return</span> sort_order == <a class="code" href="myTypeDef_8h.html#a73fcfd4206edc117e9ca1703a7ab9933a6ec9ae46a1e5c631ae04fc9c4c2d63bc">ASC</a> ? stat_a.st_size &lt; stat_b.st_size : stat_a.st_size &gt; stat_b.st_size;</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        }</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;        {</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;            <span class="keywordflow">return</span> sort_order == <a class="code" href="myTypeDef_8h.html#a73fcfd4206edc117e9ca1703a7ab9933a6ec9ae46a1e5c631ae04fc9c4c2d63bc">ASC</a> ? <a class="code" href="mySort_8cpp.html#a02b00fcfc4646b515c5d54f576a06b7d">caseInsensitiveCompare</a>(a, b) : <a class="code" href="mySort_8cpp.html#a02b00fcfc4646b515c5d54f576a06b7d">caseInsensitiveCompare</a>(b, a);</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;        }</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    };</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160; </div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    <a class="code" href="mySort_8cpp.html#a3cd113de4f66c4938b81b99b8e03baf4">mergeSort</a>(files, 0, files.size() - 1, comparator); <span class="comment">// Use custom merge sort here</span></div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160; </div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    <span class="keywordflow">if</span> (sort_order == <a class="code" href="myTypeDef_8h.html#a73fcfd4206edc117e9ca1703a7ab9933ac09f77dd64a2d5dedf24b5835d9eaa5a">DESC</a>)</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;        std::reverse(files.begin(), files.end()); <span class="comment">// Reverse the sorted order if DESC</span></div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160; </div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    <span class="keywordflow">return</span> files;</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;}</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160; </div>
-<div class="line"><a name="l00211"></a><span class="lineno"><a class="line" href="mySort_8cpp.html#a42a8916df52af5ce1f4b222e0f01fd5e">  211</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="mySort_8cpp.html#a42a8916df52af5ce1f4b222e0f01fd5e">sort</a>(<span class="keyword">const</span> <a class="code" href="myTypeDef_8h.html#a05557ef2d32f2934d4e1d478720c1b73">SortTypeDef</a> &amp;sort_type, <span class="keyword">const</span> <a class="code" href="myTypeDef_8h.html#a73fcfd4206edc117e9ca1703a7ab9933">SortOrderDef</a> &amp;order, <span class="keyword">const</span> std::string &amp;path, <span class="keywordtype">bool</span> show_hidden)</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;{</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    <span class="comment">// Sort the files based on the specified criteria</span></div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    std::vector&lt;std::string&gt; sorted_files = <a class="code" href="mySort_8cpp.html#ad21bb800646dcef6ccb8affa1ad6316a">sort_files</a>(path, sort_type, order);</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160; </div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;    <span class="comment">// Reverse the order if DESC is specified</span></div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;    <span class="keywordflow">if</span> (order == <a class="code" href="myTypeDef_8h.html#a73fcfd4206edc117e9ca1703a7ab9933ac09f77dd64a2d5dedf24b5835d9eaa5a">DESC</a>)</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;        std::reverse(sorted_files.begin(), sorted_files.end());</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160; </div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    <span class="comment">// Get maximum file name length</span></div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    <span class="keywordtype">size_t</span> max_filename_length = 0;</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">const</span> std::string &amp;file : sorted_files)</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    {</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;        max_filename_length = std::max(max_filename_length, file.size());</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;    }</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160; </div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    <span class="comment">// Iterate through the sorted files and print details for each file</span></div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">const</span> std::string &amp;file : sorted_files)</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    {</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;        std::string color;</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;        <span class="keywordflow">if</span> (file[0] == <span class="charliteral">&#39;.&#39;</span>)</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;        {</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;            <span class="keywordflow">if</span> (show_hidden)</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;            {</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;                color = <a class="code" href="myColors_8cpp.html#a3ae18d82e13e055d832665fe95abf186">get_file_color</a>(path + <span class="stringliteral">&quot;/&quot;</span> + file, <span class="keyword">false</span>);</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;            }</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;            <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;            {</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;                <span class="keywordflow">continue</span>; <span class="comment">// Skip hidden files if not showing hidden</span></div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;            }</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;        }</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;        {</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;            color = <a class="code" href="myColors_8cpp.html#a3ae18d82e13e055d832665fe95abf186">get_file_color</a>(path + <span class="stringliteral">&quot;/&quot;</span> + file, <span class="keyword">false</span>);</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;        }</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160; </div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;        <span class="comment">// Print file name with color</span></div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;        <a class="code" href="myColors_8cpp.html#afc11cdfbeb40063d5392f2e15074f1f9">print_colored_text</a>(file, color);</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;        std::cout &lt;&lt; std::setw(max_filename_length + 4 - file.size()) &lt;&lt; std::left &lt;&lt; <span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160; </div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;        <span class="comment">// Print file details based on sort type</span></div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;        <span class="keywordflow">if</span> (sort_type == <a class="code" href="myTypeDef_8h.html#a05557ef2d32f2934d4e1d478720c1b73a5c10e7e41e83914019064ea8c3ed2b87">SORT_TIME</a>)</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;        {</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;            <span class="keyword">struct </span>stat stat_buf;</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;            stat((path + <span class="stringliteral">&quot;/&quot;</span> + file).c_str(), &amp;stat_buf);</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160; </div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;            <span class="comment">// Convert timestamp to human-readable date format</span></div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;            <span class="keywordtype">char</span> time_str[20];</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;            strftime(time_str, <span class="keyword">sizeof</span>(time_str), <span class="stringliteral">&quot;%Y-%m-%d %H:%M:%S&quot;</span>, localtime(&amp;stat_buf.st_mtime));</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160; </div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;            <span class="comment">// Print file details</span></div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;            std::cout &lt;&lt; time_str;</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;        }</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (sort_type == <a class="code" href="myTypeDef_8h.html#a05557ef2d32f2934d4e1d478720c1b73a7e4d4306df8559e048127ce7dce0d2c3">SORT_SIZE</a>)</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;        {</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;            <span class="keyword">struct </span>stat stat_buf;</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;            stat((path + <span class="stringliteral">&quot;/&quot;</span> + file).c_str(), &amp;stat_buf);</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;            <span class="keywordtype">double</span> size = stat_buf.st_size;</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160; </div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;            <span class="comment">// Convert size to human-readable format</span></div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;            std::string size_str = <a class="code" href="mySort_8cpp.html#a80c07f500a039203dbaf762b97870a46">format_size</a>(size);</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160; </div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;            <span class="comment">// Print file details</span></div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;            std::cout &lt;&lt; size_str;</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;        }</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;        std::cout &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;    }</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;}</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="mySort_8cpp.html#a02b00fcfc4646b515c5d54f576a06b7d">   33</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="mySort_8cpp.html#a02b00fcfc4646b515c5d54f576a06b7d">caseInsensitiveCompare</a>(<span class="keyword">const</span> std::string &amp;a, <span class="keyword">const</span> std::string &amp;b)</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;{</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordflow">return</span> std::lexicographical_compare(a.begin(), a.end(), b.begin(), b.end(), [](<span class="keywordtype">char</span> c1, <span class="keywordtype">char</span> c2)</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                                        { return std::tolower(c1) &lt; std::tolower(c2); });</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;}</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="mySort_8cpp.html#a80c07f500a039203dbaf762b97870a46">   47</a></span>&#160;std::string <a class="code" href="mySort_8cpp.html#a80c07f500a039203dbaf762b97870a46">format_size</a>(<span class="keywordtype">double</span> size)</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;{</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">char</span> *suffixes[] = {<span class="stringliteral">&quot;bytes&quot;</span>, <span class="stringliteral">&quot;KB&quot;</span>, <span class="stringliteral">&quot;MB&quot;</span>, <span class="stringliteral">&quot;GB&quot;</span>};</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">int</span> suffix_index = 0;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordflow">while</span> (size &gt;= 1024 &amp;&amp; suffix_index &lt; 3)</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    {</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        size /= 1024;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        suffix_index++;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    }</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    std::stringstream ss;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    ss &lt;&lt; std::fixed &lt;&lt; std::setprecision(2) &lt;&lt; size &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; suffixes[suffix_index];</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordflow">return</span> ss.str();</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;}</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="mySort_8cpp.html#a84d2b0b0e788cc0c9d6d5ae08b6d60d4">   72</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="mySort_8cpp.html#a84d2b0b0e788cc0c9d6d5ae08b6d60d4">merge</a>(std::vector&lt;std::string&gt; &amp;arr, <span class="keywordtype">int</span> l, <span class="keywordtype">int</span> m, <span class="keywordtype">int</span> r, std::function&lt;<span class="keywordtype">bool</span>(<span class="keyword">const</span> std::string &amp;, <span class="keyword">const</span> std::string &amp;)&gt; comparator)</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;{</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordtype">int</span> n1 = m - l + 1;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordtype">int</span> n2 = r - m;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    std::vector&lt;std::string&gt; L(n1), R(n2);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; n1; i++)</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        L[i] = arr[l + i];</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; n2; j++)</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        R[j] = arr[m + 1 + j];</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordtype">int</span> i = 0;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keywordtype">int</span> j = 0;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordtype">int</span> k = l;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordflow">while</span> (i &lt; n1 &amp;&amp; j &lt; n2)</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    {</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="keywordflow">if</span> (comparator(L[i], R[j]))</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        {</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            arr[k] = L[i];</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            i++;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        }</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        {</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            arr[k] = R[j];</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            j++;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        }</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        k++;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    }</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keywordflow">while</span> (i &lt; n1)</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    {</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        arr[k] = L[i];</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        i++;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        k++;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    }</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keywordflow">while</span> (j &lt; n2)</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    {</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        arr[k] = R[j];</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        j++;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        k++;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    }</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;}</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160; </div>
+<div class="line"><a name="l00128"></a><span class="lineno"><a class="line" href="mySort_8cpp.html#a3cd113de4f66c4938b81b99b8e03baf4">  128</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="mySort_8cpp.html#a3cd113de4f66c4938b81b99b8e03baf4">mergeSort</a>(std::vector&lt;std::string&gt; &amp;arr, <span class="keywordtype">int</span> l, <span class="keywordtype">int</span> r, std::function&lt;<span class="keywordtype">bool</span>(<span class="keyword">const</span> std::string &amp;, <span class="keyword">const</span> std::string &amp;)&gt; comparator)</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;{</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <span class="keywordflow">if</span> (l &lt; r)</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    {</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        <span class="keywordtype">int</span> m = l + (r - l) / 2;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        <a class="code" href="mySort_8cpp.html#a3cd113de4f66c4938b81b99b8e03baf4">mergeSort</a>(arr, l, m, comparator);</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        <a class="code" href="mySort_8cpp.html#a3cd113de4f66c4938b81b99b8e03baf4">mergeSort</a>(arr, m + 1, r, comparator);</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        <a class="code" href="mySort_8cpp.html#a84d2b0b0e788cc0c9d6d5ae08b6d60d4">merge</a>(arr, l, m, r, comparator);</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    }</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;}</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
+<div class="line"><a name="l00150"></a><span class="lineno"><a class="line" href="mySort_8cpp.html#ad21bb800646dcef6ccb8affa1ad6316a">  150</a></span>&#160;std::vector&lt;std::string&gt; <a class="code" href="mySort_8cpp.html#ad21bb800646dcef6ccb8affa1ad6316a">sort_files</a>(<span class="keyword">const</span> std::string &amp;directory, <span class="keyword">const</span> <a class="code" href="myTypeDef_8h.html#a05557ef2d32f2934d4e1d478720c1b73">SortTypeDef</a> &amp;sort_type, <span class="keyword">const</span> <a class="code" href="myTypeDef_8h.html#a73fcfd4206edc117e9ca1703a7ab9933">SortOrderDef</a> &amp;sort_order)</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;{</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    std::vector&lt;std::string&gt; files;</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160; </div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    DIR *dir;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <span class="keyword">struct </span>dirent *entry;</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    <span class="keywordflow">if</span> ((dir = opendir(directory.c_str())) != NULL)</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    {</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        <span class="keywordflow">while</span> ((entry = readdir(dir)) != NULL)</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        {</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            std::string filename = entry-&gt;d_name;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;            <span class="keywordflow">if</span> (filename == <span class="stringliteral">&quot;.&quot;</span> || filename == <span class="stringliteral">&quot;..&quot;</span>)</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;                <span class="keywordflow">continue</span>; <span class="comment">// Skip current and parent directory entries</span></div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;            files.push_back(filename);</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        }</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        closedir(dir);</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    }</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160; </div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    <span class="keyword">auto</span> comparator = [&amp;](<span class="keyword">const</span> std::string &amp;a, <span class="keyword">const</span> std::string &amp;b)</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    {</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        std::string path_a = directory + <span class="stringliteral">&quot;/&quot;</span> + a;</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        std::string path_b = directory + <span class="stringliteral">&quot;/&quot;</span> + b;</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;        <span class="keyword">struct </span>stat stat_a, stat_b;</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        stat(path_a.c_str(), &amp;stat_a);</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;        stat(path_b.c_str(), &amp;stat_b);</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160; </div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;        <span class="keywordflow">if</span> (sort_type == <a class="code" href="myTypeDef_8h.html#a05557ef2d32f2934d4e1d478720c1b73a5c10e7e41e83914019064ea8c3ed2b87">SORT_TIME</a>)</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        {</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;            <span class="keywordflow">return</span> sort_order == <a class="code" href="myTypeDef_8h.html#a73fcfd4206edc117e9ca1703a7ab9933a6ec9ae46a1e5c631ae04fc9c4c2d63bc">ASC</a> ? stat_a.st_mtime &lt; stat_b.st_mtime : stat_a.st_mtime &gt; stat_b.st_mtime;</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        }</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (sort_type == <a class="code" href="myTypeDef_8h.html#a05557ef2d32f2934d4e1d478720c1b73a7e4d4306df8559e048127ce7dce0d2c3">SORT_SIZE</a>)</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        {</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;            <span class="keywordflow">return</span> sort_order == <a class="code" href="myTypeDef_8h.html#a73fcfd4206edc117e9ca1703a7ab9933a6ec9ae46a1e5c631ae04fc9c4c2d63bc">ASC</a> ? stat_a.st_size &lt; stat_b.st_size : stat_a.st_size &gt; stat_b.st_size;</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        }</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;        {</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;            <span class="keywordflow">return</span> sort_order == <a class="code" href="myTypeDef_8h.html#a73fcfd4206edc117e9ca1703a7ab9933a6ec9ae46a1e5c631ae04fc9c4c2d63bc">ASC</a> ? <a class="code" href="mySort_8cpp.html#a02b00fcfc4646b515c5d54f576a06b7d">caseInsensitiveCompare</a>(a, b) : <a class="code" href="mySort_8cpp.html#a02b00fcfc4646b515c5d54f576a06b7d">caseInsensitiveCompare</a>(b, a);</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;        }</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    };</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160; </div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    <a class="code" href="mySort_8cpp.html#a3cd113de4f66c4938b81b99b8e03baf4">mergeSort</a>(files, 0, files.size() - 1, comparator); <span class="comment">// Use custom merge sort here</span></div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160; </div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    <span class="keywordflow">if</span> (sort_order == <a class="code" href="myTypeDef_8h.html#a73fcfd4206edc117e9ca1703a7ab9933ac09f77dd64a2d5dedf24b5835d9eaa5a">DESC</a>)</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        std::reverse(files.begin(), files.end()); <span class="comment">// Reverse the sorted order if DESC</span></div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160; </div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    <span class="keywordflow">return</span> files;</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;}</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160; </div>
+<div class="line"><a name="l00210"></a><span class="lineno"><a class="line" href="mySort_8cpp.html#a42a8916df52af5ce1f4b222e0f01fd5e">  210</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="mySort_8cpp.html#a42a8916df52af5ce1f4b222e0f01fd5e">sort</a>(<span class="keyword">const</span> <a class="code" href="myTypeDef_8h.html#a05557ef2d32f2934d4e1d478720c1b73">SortTypeDef</a> &amp;sort_type, <span class="keyword">const</span> <a class="code" href="myTypeDef_8h.html#a73fcfd4206edc117e9ca1703a7ab9933">SortOrderDef</a> &amp;order, <span class="keyword">const</span> std::string &amp;path, <span class="keywordtype">bool</span> show_hidden)</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;{</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;    <span class="comment">// Sort the files based on the specified criteria</span></div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    std::vector&lt;std::string&gt; sorted_files = <a class="code" href="mySort_8cpp.html#ad21bb800646dcef6ccb8affa1ad6316a">sort_files</a>(path, sort_type, order);</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160; </div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    <span class="comment">// Reverse the order if DESC is specified</span></div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;    <span class="keywordflow">if</span> (order == <a class="code" href="myTypeDef_8h.html#a73fcfd4206edc117e9ca1703a7ab9933ac09f77dd64a2d5dedf24b5835d9eaa5a">DESC</a>)</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;        std::reverse(sorted_files.begin(), sorted_files.end());</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160; </div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    <span class="comment">// Get maximum file name length</span></div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    <span class="keywordtype">size_t</span> max_filename_length = 0;</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">const</span> std::string &amp;file : sorted_files)</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    {</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;        max_filename_length = std::max(max_filename_length, file.size());</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    }</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160; </div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    <span class="comment">// Iterate through the sorted files and print details for each file</span></div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">const</span> std::string &amp;file : sorted_files)</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    {</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;        std::string color;</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;        <span class="keywordflow">if</span> (file[0] == <span class="charliteral">&#39;.&#39;</span>)</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;        {</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;            <span class="keywordflow">if</span> (show_hidden)</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;            {</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;                color = <a class="code" href="myColors_8cpp.html#a3ae18d82e13e055d832665fe95abf186">get_file_color</a>(path + <span class="stringliteral">&quot;/&quot;</span> + file, <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;            }</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;            <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;            {</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;                <span class="keywordflow">continue</span>; <span class="comment">// Skip hidden files if not showing hidden</span></div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;            }</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;        }</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;        {</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;            color = <a class="code" href="myColors_8cpp.html#a3ae18d82e13e055d832665fe95abf186">get_file_color</a>(path + <span class="stringliteral">&quot;/&quot;</span> + file, <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;        }</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160; </div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;        <span class="comment">// Print file name with color</span></div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;        <a class="code" href="myColors_8cpp.html#afc11cdfbeb40063d5392f2e15074f1f9">print_colored_text</a>(file, color);</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;        std::cout &lt;&lt; std::setw(max_filename_length + 4 - file.size()) &lt;&lt; std::left &lt;&lt; <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160; </div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;        <span class="comment">// Print file details based on sort type</span></div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;        <span class="keywordflow">if</span> (sort_type == <a class="code" href="myTypeDef_8h.html#a05557ef2d32f2934d4e1d478720c1b73a5c10e7e41e83914019064ea8c3ed2b87">SORT_TIME</a>)</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;        {</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;            <span class="keyword">struct </span>stat stat_buf;</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;            stat((path + <span class="stringliteral">&quot;/&quot;</span> + file).c_str(), &amp;stat_buf);</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160; </div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;            <span class="comment">// Convert timestamp to human-readable date format</span></div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;            <span class="keywordtype">char</span> time_str[20];</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;            strftime(time_str, <span class="keyword">sizeof</span>(time_str), <span class="stringliteral">&quot;%Y-%m-%d %H:%M:%S&quot;</span>, localtime(&amp;stat_buf.st_mtime));</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160; </div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;            <span class="comment">// Print file details</span></div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;            std::cout &lt;&lt; time_str;</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;        }</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (sort_type == <a class="code" href="myTypeDef_8h.html#a05557ef2d32f2934d4e1d478720c1b73a7e4d4306df8559e048127ce7dce0d2c3">SORT_SIZE</a>)</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;        {</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;            <span class="keyword">struct </span>stat stat_buf;</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;            stat((path + <span class="stringliteral">&quot;/&quot;</span> + file).c_str(), &amp;stat_buf);</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;            <span class="keywordtype">double</span> size = stat_buf.st_size;</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160; </div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;            <span class="comment">// Convert size to human-readable format</span></div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;            std::string size_str = <a class="code" href="mySort_8cpp.html#a80c07f500a039203dbaf762b97870a46">format_size</a>(size);</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160; </div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;            <span class="comment">// Print file details</span></div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;            std::cout &lt;&lt; size_str;</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;        }</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;        std::cout &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;    }</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;}</div>
 <div class="ttc" id="amyColors_8cpp_html_a3ae18d82e13e055d832665fe95abf186"><div class="ttname"><a href="myColors_8cpp.html#a3ae18d82e13e055d832665fe95abf186">get_file_color</a></div><div class="ttdeci">std::string get_file_color(const std::string &amp;filename, bool is_hidden)</div><div class="ttdoc">Get the color for a file based on its name and visibility.</div><div class="ttdef"><b>Definition:</b> <a href="myColors_8cpp_source.html#l00037">myColors.cpp:37</a></div></div>
 <div class="ttc" id="amyColors_8cpp_html_afc11cdfbeb40063d5392f2e15074f1f9"><div class="ttname"><a href="myColors_8cpp.html#afc11cdfbeb40063d5392f2e15074f1f9">print_colored_text</a></div><div class="ttdeci">void print_colored_text(const std::string &amp;text, const std::string &amp;color)</div><div class="ttdoc">Print colored text to the console.</div><div class="ttdef"><b>Definition:</b> <a href="myColors_8cpp_source.html#l00023">myColors.cpp:23</a></div></div>
 <div class="ttc" id="amyColors_8hpp_html"><div class="ttname"><a href="myColors_8hpp.html">myColors.hpp</a></div><div class="ttdoc">Definitions of ANSI color escape codes and functions for colored text output.</div></div>
-<div class="ttc" id="amySort_8cpp_html_a02b00fcfc4646b515c5d54f576a06b7d"><div class="ttname"><a href="mySort_8cpp.html#a02b00fcfc4646b515c5d54f576a06b7d">caseInsensitiveCompare</a></div><div class="ttdeci">bool caseInsensitiveCompare(const std::string &amp;a, const std::string &amp;b)</div><div class="ttdoc">Case-insensitive comparison of two strings.</div><div class="ttdef"><b>Definition:</b> <a href="mySort_8cpp_source.html#l00034">mySort.cpp:34</a></div></div>
-<div class="ttc" id="amySort_8cpp_html_a3cd113de4f66c4938b81b99b8e03baf4"><div class="ttname"><a href="mySort_8cpp.html#a3cd113de4f66c4938b81b99b8e03baf4">mergeSort</a></div><div class="ttdeci">void mergeSort(std::vector&lt; std::string &gt; &amp;arr, int l, int r, std::function&lt; bool(const std::string &amp;, const std::string &amp;)&gt; comparator)</div><div class="ttdoc">Implementation of merge sort algorithm.</div><div class="ttdef"><b>Definition:</b> <a href="mySort_8cpp_source.html#l00129">mySort.cpp:129</a></div></div>
-<div class="ttc" id="amySort_8cpp_html_a42a8916df52af5ce1f4b222e0f01fd5e"><div class="ttname"><a href="mySort_8cpp.html#a42a8916df52af5ce1f4b222e0f01fd5e">sort</a></div><div class="ttdeci">void sort(const SortTypeDef &amp;sort_type, const SortOrderDef &amp;order, const std::string &amp;path, bool show_hidden)</div><div class="ttdoc">Sort files in a directory based on specified criteria and display them.</div><div class="ttdef"><b>Definition:</b> <a href="mySort_8cpp_source.html#l00211">mySort.cpp:211</a></div></div>
-<div class="ttc" id="amySort_8cpp_html_a80c07f500a039203dbaf762b97870a46"><div class="ttname"><a href="mySort_8cpp.html#a80c07f500a039203dbaf762b97870a46">format_size</a></div><div class="ttdeci">std::string format_size(double size)</div><div class="ttdoc">Format size in human-readable format.</div><div class="ttdef"><b>Definition:</b> <a href="mySort_8cpp_source.html#l00048">mySort.cpp:48</a></div></div>
-<div class="ttc" id="amySort_8cpp_html_a84d2b0b0e788cc0c9d6d5ae08b6d60d4"><div class="ttname"><a href="mySort_8cpp.html#a84d2b0b0e788cc0c9d6d5ae08b6d60d4">merge</a></div><div class="ttdeci">void merge(std::vector&lt; std::string &gt; &amp;arr, int l, int m, int r, std::function&lt; bool(const std::string &amp;, const std::string &amp;)&gt; comparator)</div><div class="ttdoc">Merge two sorted subarrays into one sorted array.</div><div class="ttdef"><b>Definition:</b> <a href="mySort_8cpp_source.html#l00073">mySort.cpp:73</a></div></div>
-<div class="ttc" id="amySort_8cpp_html_ad21bb800646dcef6ccb8affa1ad6316a"><div class="ttname"><a href="mySort_8cpp.html#ad21bb800646dcef6ccb8affa1ad6316a">sort_files</a></div><div class="ttdeci">std::vector&lt; std::string &gt; sort_files(const std::string &amp;directory, const SortTypeDef &amp;sort_type, const SortOrderDef &amp;sort_order)</div><div class="ttdoc">Sort files in a directory based on specified criteria.</div><div class="ttdef"><b>Definition:</b> <a href="mySort_8cpp_source.html#l00151">mySort.cpp:151</a></div></div>
+<div class="ttc" id="amySort_8cpp_html_a02b00fcfc4646b515c5d54f576a06b7d"><div class="ttname"><a href="mySort_8cpp.html#a02b00fcfc4646b515c5d54f576a06b7d">caseInsensitiveCompare</a></div><div class="ttdeci">bool caseInsensitiveCompare(const std::string &amp;a, const std::string &amp;b)</div><div class="ttdoc">Case-insensitive comparison of two strings.</div><div class="ttdef"><b>Definition:</b> <a href="mySort_8cpp_source.html#l00033">mySort.cpp:33</a></div></div>
+<div class="ttc" id="amySort_8cpp_html_a3cd113de4f66c4938b81b99b8e03baf4"><div class="ttname"><a href="mySort_8cpp.html#a3cd113de4f66c4938b81b99b8e03baf4">mergeSort</a></div><div class="ttdeci">void mergeSort(std::vector&lt; std::string &gt; &amp;arr, int l, int r, std::function&lt; bool(const std::string &amp;, const std::string &amp;)&gt; comparator)</div><div class="ttdoc">Implementation of merge sort algorithm.</div><div class="ttdef"><b>Definition:</b> <a href="mySort_8cpp_source.html#l00128">mySort.cpp:128</a></div></div>
+<div class="ttc" id="amySort_8cpp_html_a42a8916df52af5ce1f4b222e0f01fd5e"><div class="ttname"><a href="mySort_8cpp.html#a42a8916df52af5ce1f4b222e0f01fd5e">sort</a></div><div class="ttdeci">void sort(const SortTypeDef &amp;sort_type, const SortOrderDef &amp;order, const std::string &amp;path, bool show_hidden)</div><div class="ttdoc">Sort files in a directory based on specified criteria and display them.</div><div class="ttdef"><b>Definition:</b> <a href="mySort_8cpp_source.html#l00210">mySort.cpp:210</a></div></div>
+<div class="ttc" id="amySort_8cpp_html_a80c07f500a039203dbaf762b97870a46"><div class="ttname"><a href="mySort_8cpp.html#a80c07f500a039203dbaf762b97870a46">format_size</a></div><div class="ttdeci">std::string format_size(double size)</div><div class="ttdoc">Format size in human-readable format.</div><div class="ttdef"><b>Definition:</b> <a href="mySort_8cpp_source.html#l00047">mySort.cpp:47</a></div></div>
+<div class="ttc" id="amySort_8cpp_html_a84d2b0b0e788cc0c9d6d5ae08b6d60d4"><div class="ttname"><a href="mySort_8cpp.html#a84d2b0b0e788cc0c9d6d5ae08b6d60d4">merge</a></div><div class="ttdeci">void merge(std::vector&lt; std::string &gt; &amp;arr, int l, int m, int r, std::function&lt; bool(const std::string &amp;, const std::string &amp;)&gt; comparator)</div><div class="ttdoc">Merge two sorted subarrays into one sorted array.</div><div class="ttdef"><b>Definition:</b> <a href="mySort_8cpp_source.html#l00072">mySort.cpp:72</a></div></div>
+<div class="ttc" id="amySort_8cpp_html_ad21bb800646dcef6ccb8affa1ad6316a"><div class="ttname"><a href="mySort_8cpp.html#ad21bb800646dcef6ccb8affa1ad6316a">sort_files</a></div><div class="ttdeci">std::vector&lt; std::string &gt; sort_files(const std::string &amp;directory, const SortTypeDef &amp;sort_type, const SortOrderDef &amp;sort_order)</div><div class="ttdoc">Sort files in a directory based on specified criteria.</div><div class="ttdef"><b>Definition:</b> <a href="mySort_8cpp_source.html#l00150">mySort.cpp:150</a></div></div>
 <div class="ttc" id="amySort_8hpp_html"><div class="ttname"><a href="mySort_8hpp.html">mySort.hpp</a></div><div class="ttdoc">Declarations of functions for sorting files and directories based on specified criteria....</div></div>
 <div class="ttc" id="amyTypeDef_8h_html"><div class="ttname"><a href="myTypeDef_8h.html">myTypeDef.h</a></div><div class="ttdoc">Defines enums for different view types, sort types, sort orders, and error types.</div></div>
 <div class="ttc" id="amyTypeDef_8h_html_a05557ef2d32f2934d4e1d478720c1b73"><div class="ttname"><a href="myTypeDef_8h.html#a05557ef2d32f2934d4e1d478720c1b73">SortTypeDef</a></div><div class="ttdeci">SortTypeDef</div><div class="ttdoc">Enumerates different sort types.</div><div class="ttdef"><b>Definition:</b> <a href="myTypeDef_8h_source.html#l00027">myTypeDef.h:28</a></div></div>
